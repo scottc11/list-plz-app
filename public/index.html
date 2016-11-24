@@ -14,16 +14,16 @@
 
   <h3>X-Mas list</h3>
 
-  <div class="list">
+  <div ng-controller="mainCtrl" class="list">
     <input type="checkbox">
     <label class="editing-label">A sample item</label>
     <input type="text">
-  </div>
 
-  <div class="actions">
-    <a href="">edit</a>
-    <a href="">save</a>
-    <a href="">delete</a>
+    <div class="actions">
+      <a href="">edit</a>
+      <a href="" ng-click="helloWorld()">save</a>
+      <a href="">delete</a>
+    </div>
   </div>
 
   <footer>
