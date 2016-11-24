@@ -4,13 +4,16 @@
 <head>
   <title>Page Title</title>
 
+  <link rel="stylesheet" href="vendor/bootstrap-3.3.7/css/bootstrap.min.css" media="screen">
   <link rel="stylesheet" href="styles/main.css" media="screen">
 
 </head>
 
 <body ng-app="listPlz">
-
-  <h1>User Name</h1>
+<section class="container">
+  <div class="row">
+    <h1 class="col-xs-12">User Name</h1>
+  </div>
 
   <h3>X-Mas list</h3>
 
@@ -25,9 +28,16 @@
       <a href="">delete</a>
     </div>
   </div>
+</section>
+
 
   <footer>
+    <!-- VENDOR SCRIPTS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="vendor/angular.min.js"></script>
+
+    <!-- CUSTOM SCRIPTS -->
     <script type="text/javascript" src="scripts/app.js"></script>
     <script type="text/javascript" src="scripts/customDirective.js"></script>
   </footer>
