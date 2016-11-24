@@ -1,3 +1,4 @@
-'use strict';
+'use strict'
 
-angular.module('todoListApp', []);
+angular.module('listPlz', []);
+console.log('I think something is working');
