@@ -1,10 +1,40 @@
+
+
+
+/*--------------------------------------*/
+/*        GLOBAL CLASSES                */
+/*--------------------------------------*/
+
 body {
-  background-color: rgb(168, 185, 255);
+  background-color: rgb(233, 233, 233);
 }
 
+.text-align-center {text-align: center;}
+.margin-top-40 {margin-top: 40px;}
+.margin-bottom-40 {margin-bottom: 40px;}
+.margin-none {margin: 0;}
+.margin-top-20 {margin-top: 20px;}
+.margin-bottom-20 {margin-bottom: 20px;}
+.padding-top-bottom-40 {padding-top: 40px; padding-bottom: 40px;}
+
+
+/*--------------------------------------*/
+/*        WISH LIST CLASSES             */
+/*--------------------------------------*/
+
+.user-name {
+  text-align: center;
+}
 
 .add {
   text-align: right;
+  margin-bottom: 10px;
+}
+
+.list {
+  display: inline-block;
+  background-color: rgb(240, 255, 219);
+  padding: 20px;
 }
 
 .list .edited label:after {
@@ -13,4 +43,9 @@ body {
   color: #c9d4db;
   font-size: 14px;
   padding-left: 5px;
+}
+
+.actions {
+  display: inline-block;
+  float: right;
 }

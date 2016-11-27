@@ -1,13 +1,18 @@
-
-[
-  {"name": "Indigo gift card"},
-  {"name": "Coffee Mug"},
-  {"name": "15 pound kettle bell x2"},
-  {"name": "Tool box"},
-  {"name": "Power Drill"},
-  {"name": "Amazon Gift Card"},
-  {"name": "Apple TV"},
-  {"name": "Books"},
-  {"name": "Basic set of tools"},
-  {"name": "Laptop Pillow"}
-]
+{
+  "user": { "username": "ccamp22",
+            "firstname": "Courtney",
+            "lastname": "Campbell"
+          },
+  "wishlist": [
+      {"name": "Indigo gift card"},
+      {"name": "Coffee Mug"},
+      {"name": "15 pound kettle bell x2"},
+      {"name": "Tool box"},
+      {"name": "Power Drill"},
+      {"name": "Amazon Gift Card"},
+      {"name": "Apple TV"},
+      {"name": "Books"},
+      {"name": "Basic set of tools"},
+      {"name": "Laptop Pillow"}
+    ]
+}

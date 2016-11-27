@@ -11,33 +11,32 @@
 
 <body ng-app="listPlz">
 <section class="container">
-  <div class="row">
-    <h1 class="col-xs-12">User Name</h1>
-  </div>
+  <div ng-controller="mainCtrl" class="row">
 
-  <h3>X-Mas list</h3>
+    <h1 class="user-name col-xs-12">{{user.username}}</h1>
 
-  <div ng-controller="mainCtrl" class="list">
+    <div class="list col-xs-12 col-md-6 col-md-offset-3">
 
-    <div class="add">
-      <a href="" ng-click="addItem()">+ add a new item</a>
-    </div>
-
-    <!-- iterate through the wish list and create html elements for each -->
-    <div class="item" ng-repeat=" item in wishList " ng-class="{'edited': item.edited}">
-      <input ng-model="item.purchased" type="checkbox">
-      <label ng-hide="editing" class="editing-label">{{item.name}}</label>
-
-      <!-- NOTE: alot of angular directives below are editing the state of the application -->
-      <input ng-change="item.edited = true" ng-blur="editing = false;" ng-show="editing" ng-model="item.name" type="text">
-
-      <div class="actions">
-        <a href="" ng-click="editing = !editing">edit</a> <!-- toggles editing value between true/false-->
-        <a href="" ng-click="saveItem(item, $index)">save</a>
-        <a href="" ng-click="deleteItem(item, $index)">delete</a>
+      <div class="add">
+        <a href="" ng-click="addItem()"><span class="glyphicon glyphicon-plus"></span> add new</a>
       </div>
-    </div>
 
+      <!-- iterate through the wish list and create html elements for each -->
+      <div class="item" ng-repeat=" item in wishlist " ng-class="{'edited': item.edited}">
+        <input ng-model="item.purchased" type="checkbox">
+        <label ng-hide="editing" class="editing-label">{{item.name}}</label>
+
+        <!-- NOTE: alot of angular directives below are editing the state of the application -->
+        <input ng-change="item.edited = true" ng-blur="editing = false;" ng-show="editing" ng-model="item.name" type="text">
+
+        <div class="actions">
+          <a href="" ng-click="editing = !editing">edit</a> <!-- toggles editing value between true/false-->
+          <a href="" ng-click="saveItem(item, $index)">save</a>
+          <a href="" ng-click="deleteItem(item, $index)">delete</a>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -50,7 +49,9 @@
 
     <!-- CUSTOM SCRIPTS -->
     <script type="text/javascript" src="scripts/app.js"></script>
-    <script type="text/javascript" src="scripts/customDirective.js"></script>
+    <script type="text/javascript" src="scripts/controllers/mainctrl.js"></script>
+    <script type="text/javascript" src="scripts/services/dataservice.js"></script>
+    <script type="text/javascript" src="scripts/directives/customDirective.js"></script>
   </footer>
 
 </body>
