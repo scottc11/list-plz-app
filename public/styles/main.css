@@ -1,3 +1,16 @@
 body {
   background-color: rgb(168, 185, 255);
 }
+
+
+.add {
+  text-align: right;
+}
+
+.list .edited label:after {
+  content: " edited";
+  text-transform: uppercase;
+  color: #c9d4db;
+  font-size: 14px;
+  padding-left: 5px;
+}
