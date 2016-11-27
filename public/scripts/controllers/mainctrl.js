@@ -13,8 +13,12 @@ angular.module('listPlz')
   });
 
   $scope.addItem = function() {
-    var item = {"name": "This is a new item"};
-    $scope.wishlist.push(item);
+    var item = {
+      "name": "click to edit",
+      "details": "",
+      "url": ""
+    };
+    $scope.wishlist.unshift(item);  // pushes new item to the 'top' of the list
   }
 
   $scope.deleteItem = function(item, $index) {
@@ -25,5 +29,12 @@ angular.module('listPlz')
   $scope.saveItem = function(item, $index) {
     dataService.saveItem(item);
   };
+
+  // TODO:
+  // when ('add new' button clicked)
+  //    add new item to list and init it with 'editing' == true
+  // if (new item name == empty)
+  //    display holder text of "click to edit"
+
 
 });
