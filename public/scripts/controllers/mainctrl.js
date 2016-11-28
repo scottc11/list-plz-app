@@ -8,8 +8,8 @@ angular.module('listPlz')
   // GET THE WISH LIST DATA FROM api
   dataService.getWishlist(function(response) {
     console.log(response.data);
-    $scope.user = response.data['user'];
-    $scope.wishlist = response.data['wishlist'];
+    $scope.user = response.data.list['user'];
+    $scope.wishlist = response.data.list['wishlist'];
   });
 
   $scope.addItem = function() {

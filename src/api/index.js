@@ -11,7 +11,7 @@ var list = require('../../mock/list.json') // our mock data
 var router = express.Router();
 
 
-
+//  NOTE: for some reason, the file extension can/needs to be excluded in the GET request
 router.get('/list', function(req, res) {
   res.json({list: list});
 });

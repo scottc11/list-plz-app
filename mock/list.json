@@ -1,14 +1,19 @@
 
-
-[
-  {"item": "Indigo gift card"},
-  {"item": "Coffee Mug"},
-  {"item": "15 pound kettle bell x2"},
-  {"item": "Tool box"},
-  {"item": "Power Drill"},
-  {"item": "Amazon Gift Card"},
-  {"item": "Apple TV"},
-  {"item": "Books"},
-  {"item": "Basic set of tools"},
-  {"item": "Laptop Pillow"}
-]
+{
+  "user": { "userName": "ccamp232",
+            "firstName": "Courtney",
+            "lastName": "Campbell"
+          },
+  "wishlist": [
+      {"name": "Indigo gift card", "details": "", "url": ""},
+      {"name": "Coffee Mug", "details": "", "url": ""},
+      {"name": "15 pound kettle bell x2", "details": "", "url": ""},
+      {"name": "Tool box", "details": "", "url": ""},
+      {"name": "Power Drill", "details": "Order it in the next 35 hours and 48 minutes and choose One-Day Delivery at checkout", "url": "https://www.amazon.ca/BLACK-DECKER-GC181C-18-Volt-Driver/dp/B0093C8BL6/ref=sr_1_1?s=electronics&ie=UTF8&qid=1480221695&sr=1-1&keywords=power+drill"},
+      {"name": "Amazon Gift Card", "details": "", "url": ""},
+      {"name": "Apple TV", "details": "either the 2nd or 3rd generation", "url": "http://www.apple.com/ca/tv/?afid=p238%7CsCm13jnx2-dc_mtid_1870765e38482_pcrid_162566302017_&cid=aos-CA-kwGO-btb--slid--product-"},
+      {"name": "Books", "details": "Some classic fiction books would be great", "url": ""},
+      {"name": "Basic set of tools", "details": "", "url": ""},
+      {"name": "Laptop Pillow", "details": "a blue one", "url": ""}
+    ]
+}

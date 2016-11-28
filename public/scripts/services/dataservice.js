@@ -6,7 +6,7 @@ angular.module('listPlz')
 
   // THIS IS WHERE THE SERVICE WILL CONNECT WITH DATA API
   this.getWishlist = function(callback) {
-    $http.get('mock/list.json').then(callback)
+    $http.get('/api/list').then(callback)
   }
 
   this.deleteItem = function(item) {
