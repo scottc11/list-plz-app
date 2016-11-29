@@ -31,7 +31,7 @@
 
           <div class="actions">
             <a href="" ng-click="editing = !editing">edit</a> <!-- toggles editing value between true/false-->
-            <a href="" ng-click="saveItem(item, $index)">save</a>
+            <a href="" ng-click="saveItem()">save</a>
             <a href="" ng-click="deleteItem(item, $index)">delete</a>
 
             <a href="{{item.url}}" target="_blank" ng-if="item.url">url</a>

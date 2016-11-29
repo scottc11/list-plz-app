@@ -8,8 +8,8 @@ angular.module('listPlz')
   // GET THE WISH LIST DATA FROM api
   dataService.getWishlist(function(response) {
     console.log(response.data);
-    $scope.user = response.data.list['user'];
-    $scope.wishlist = response.data.list['wishlist'];
+    $scope.user = response.data.list[3]['user'];
+    $scope.wishlist = response.data.list[3]['wishlist'];
   });
 
   $scope.addItem = function() {
@@ -26,9 +26,22 @@ angular.module('listPlz')
     $scope.wishlist.splice($index, 1);
   };
 
-  $scope.saveItem = function(item, $index) {
-    dataService.saveItem(item);
+  $scope.saveItem = function() {
+    // Get all items that have been edited and put them in array
+    var filteredItems = $scope.wishlist.filter(function(item) {
+      if (item.edited == true) {
+        return item
+      }
+    });
+    dataService.saveItem(filteredItems).finally($scope.resetItemState);
   };
+
+  // reset all items with edited == true to edited == false
+  $scope.resetItemState = function() {
+    $scope.wishlist.forEach(function(item) {
+      item.edited = false;
+    })
+  }
 
   // TODO:
   // when ('add new' button clicked)
