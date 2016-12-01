@@ -29,11 +29,11 @@ angular.module('listPlz')
   $scope.saveItem = function() {
     // Get all items that have been edited and put them in array
     var filteredItems = $scope.wishlist.filter(function(item) {
-      if (item.edited == true) {
-        return item
+      if (item.edited) {
+        return item;
       }
     });
-    dataService.saveItem(filteredItems).finally($scope.resetItemState);
+    dataService.saveItem(filteredItems).finally($scope.resetItemState());
   };
 
   // reset all items with edited == true to edited == false

@@ -24,16 +24,23 @@ angular.module('listPlz')
       if (!item._id) { // if item has no id
         request = $http.post('/api/list', item);
       } else {
-        queue.push(request);
+        request = $http.put('/api/list/' + item._id, item).then(function(result) {
+
+          // item = result.data.item;
+          item = result.config.data;
+          console.log('---------');
+          console.log(result);
+          console.log(item);
+          console.log('---------');
+          return item;
+        });
       }
+      queue.push(request);
     });
 
     // $q.all runs all the requests in the queue array
     return $q.all(queue).then(function(results) {
       console.log("I saved " + items.length + " items!");
     });
-
-
   }
-
 });

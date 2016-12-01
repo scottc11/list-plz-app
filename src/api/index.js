@@ -5,9 +5,6 @@
 var express = require('express');
 var List = require('../models/list.js');
 
-// var list = require('../../mock/list.json') // our mock data
-
-
 
 // defining a router to prefix things with the '/api' namespace
 var router = express.Router();
@@ -49,19 +46,25 @@ router.put('/list/:id', function(req, res) {
   var id = req.params.id;
   var item = req.body;
 
+  console.log('id', id);
+  console.log('item id', item._id);
+  console.log('item', item);
   // IF there is an item from request, and that item matches the request _ID
   if (item && item._id !== id) {
     return res.status(500).json({err: "Ids don't match!"});
   }
-  else {
-    List.findByIdAndUpdate(id, item, {new: true}, function(err, item) {
-      if (err) {
-        return res.status(500).json({err: err.message});
-      } else {
-        res.json({'user': item.user, 'wishlist': item.wishlist });
-      }
-    });
-  }
+  // create listItem schema and remove
+  List.findOneAndUpdate({_id: id}, {$set:item}, {new: true}, function(err, data) {
+
+    if (err) {
+      return res.status(500).json({err: err.message});
+    }
+    console.log("made it");
+    console.log('error', err, 'data', data);
+    res.json({ 'item': data });
+
+  });
+
 });
 
 
