@@ -15,16 +15,16 @@ angular.module('listPlz')
   }
 
   // Saving new items.  NOTE: using the $q ('ie. queue') parameter in service
-  this.saveItem = function(items) {
+  this.saveItem = function(userObjectId, itemsToSave) {
     var queue = [];
 
     // loop through each item/user and push each 'request' to the queue array
-    items.forEach(function(item) {
+    itemsToSave.forEach(function(item) {
       var request;
-      if (!item._id) { // if item has no id
+      if (!item._id) { // if item has no id, POST the item to database
         request = $http.post('/api/list', item);
       } else {
-        request = $http.put('/api/list/' + item._id, item).then(function(result) {
+        request = $http.put('/api/list/' + userObjectId, item).then(function(result) {
 
           // item = result.data.item;
           item = result.config.data;
@@ -40,7 +40,7 @@ angular.module('listPlz')
 
     // $q.all runs all the requests in the queue array
     return $q.all(queue).then(function(results) {
-      console.log("I saved " + items.length + " items!");
+      console.log("I saved " + itemsToSave.length + " items!");
     });
   }
 });

@@ -1,27 +1,18 @@
 'use strict';
 
-var List = require('./models/list.js');
+var User = require('./models/userSchema.js');
 
-var seedData = require('../mock/list.json');
-// console.log(seedData);
-
-var testData = ['feed the dog', 'walk the kids', 'water the trees'];
+// some data to get things rolling
+var seedData = require('../mock/seedData.json');
 
 seedData.forEach(function(object, index) {
-  // console.log(object.user.firstName);
-  // console.log(object.wishlist);
-  List.find( { user: object.user }, function(err, seedData) {
+
+  // if seedData values already exists in DB, don't seed them!
+  User.find( { userInfo: object.userInfo }, function(err, seedData) {
     if (!err && !seedData.length) {
-      List.create( { user: object.user, wishlist: object.wishlist } );
+      User.create( { userInfo: object.userInfo, wishlist: object.wishlist } );
     } else {
       console.log('Seed data was not created in seed.js');
     };
   });
 });
-
-
-// List.find({'user': {'firstName': object.user.firstName}}, function(err, todos) {
-//   if (!err && !seedData.length) {
-//     List.create({user: object.user, wishlist: object.wishlist});
-//   }
-// });

@@ -8,17 +8,19 @@ angular.module('listPlz')
   // GET THE WISH LIST DATA FROM api
   dataService.getWishlist(function(response) {
     console.log(response.data);
-    $scope.user = response.data.list[3]['user'];
-    $scope.wishlist = response.data.list[3]['wishlist'];
+    $scope.userObject = response.data.user[1];
+    $scope.userInfo = response.data.user[1]['userInfo'];
+    $scope.wishlist = response.data.user[1]['wishlist'];
   });
 
   $scope.addItem = function() {
     var item = {
-      "name": "click to edit",
-      "details": "",
-      "url": ""
+      name: "click to edit",
+      purchased: false,
+      details: "",
+      url: ""
     };
-    $scope.wishlist.unshift(item);  // pushes new item to the 'top' of the list
+    $scope.wishlist.unshift(item);  // pushes new item to the 'top/front' of the list
   }
 
   $scope.deleteItem = function(item, $index) {
@@ -27,20 +29,23 @@ angular.module('listPlz')
   };
 
   $scope.saveItem = function() {
+
+    var userObjectId = $scope.userObject._id;
+
     // Get all items that have been edited and put them in array
-    var filteredItems = $scope.wishlist.filter(function(item) {
+    var itemsToSave = $scope.wishlist.filter(function(item) {
       if (item.edited) {
         return item;
       }
     });
-    dataService.saveItem(filteredItems).finally($scope.resetItemState());
+    dataService.saveItem(userObjectId, itemsToSave).finally($scope.resetItemState());
   };
 
   // reset all items with edited == true to edited == false
   $scope.resetItemState = function() {
     $scope.wishlist.forEach(function(item) {
       item.edited = false;
-    })
+    });
   }
 
   // TODO:

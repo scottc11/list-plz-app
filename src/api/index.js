@@ -3,7 +3,7 @@
 // THIS IS THE API module
 
 var express = require('express');
-var List = require('../models/list.js');
+var User = require('../models/userSchema.js');
 
 
 // defining a router to prefix things with the '/api' namespace
@@ -14,22 +14,34 @@ var router = express.Router();
 router.get('/list', function(req, res) {
 
   // getting the data from database via mongoose model (models/list.js)
-  List.find({}, function(err, list) {
+  User.find({}, function(err, user) {
     if (err) {
       return res.status(500).json({message: err.message});
     } else {
-      res.json({list: list});
+      res.json( { user: user } );
     }
   });
 
 });
 
+// NOTE: GETTING specific user data.  Keep in mind that it always returns an Array, with all the matching object in that array.  Meaning, if there is only one matching object, you still have to select it with an index, then the following object keys
+router.get('/list/:id', function(req, res) {
+  var id = req.params.id;
+  User.find( { _id: id } , function(err, user) {
+    if (err) {
+      return res.status(500).json({message: err.message});
+    } else {
+      res.json( { user: user } );
+    }
+  });
+
+});
 
 // ----------------------------------------------------------------
 // NOTE: POST route to create new list entries
 router.post('/list', function(req, res) {
   var item = req.body;
-  List.create(item, function(err, item) {
+  User.create(item, function(err, item) {
     if (err) {
       return res.status(500).json({err: err.message});
     } else {
@@ -43,18 +55,20 @@ router.post('/list', function(req, res) {
 // NOTE: PUT route to update existing list entries
 // added a parameter called 'id' to the url string
 router.put('/list/:id', function(req, res) {
-  var id = req.params.id;
+  var userId = req.params.id;  // Params is the extra stuff attached to url (ie. mysite.com/list/:myParameter)
   var item = req.body;
 
-  console.log('id', id);
+  console.log('id', userId);
   console.log('item id', item._id);
-  console.log('item', item);
+  console.log('item body', item);
+  // NOTE: put this block once wishlist has been located
   // IF there is an item from request, and that item matches the request _ID
-  if (item && item._id !== id) {
-    return res.status(500).json({err: "Ids don't match!"});
-  }
-  // create listItem schema and remove
-  List.findOneAndUpdate({_id: id}, {$set:item}, {new: true}, function(err, data) {
+  // if (item && item._id !== id) {
+  //   return res.status(500).json({err: "IDs don't match!"});
+  // }
+
+  // Find the users list item and update it
+  User.findOneAndUpdate({_id: item._id}, {$set:item}, {upsert: true, new: true}, function(err, data) {
 
     if (err) {
       return res.status(500).json({err: err.message});

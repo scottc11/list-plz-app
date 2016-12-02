@@ -2,13 +2,8 @@
 
 var mongoose = require('mongoose');
 
-// var todoSchema = new mongoose.Schema({
-// 	name: String,
-// 	completed: Boolean
-// });
-
-var listSchema = new mongoose.Schema({
-  user: {
+var userSchema = new mongoose.Schema({
+  userInfo: {
     userName: String,
     firstName: String,
     lastName: String
@@ -21,6 +16,6 @@ var listSchema = new mongoose.Schema({
   }]
 });
 
-var model = mongoose.model('List', listSchema);
+var model = mongoose.model('User', userSchema);
 
 module.exports = model;

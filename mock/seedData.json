@@ -1,6 +1,6 @@
 [
   {
-    "user": { "userName": "scottc11",
+    "userInfo": { "userName": "scottc11",
               "firstName": "Scott",
               "lastName": "Campbell"
             },
@@ -18,7 +18,7 @@
       ]
   },
   {
-    "user": { "userName": "ccamp232",
+    "userInfo": { "userName": "ccamp232",
               "firstName": "Courtney",
               "lastName": "Campbell"
             },
