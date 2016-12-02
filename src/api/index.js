@@ -6,6 +6,7 @@ var express = require('express');
 var User = require('../models/userSchema.js');
 
 
+
 // defining a router to prefix things with the '/api' namespace
 var router = express.Router();
 
@@ -39,45 +40,48 @@ router.get('/list/:id', function(req, res) {
 
 // ----------------------------------------------------------------
 // NOTE: POST route to create new list entries
-router.post('/list', function(req, res) {
+router.post('/list/:userId', function(req, res) {
+  var userId = req.params.userId
   var item = req.body;
-  User.create(item, function(err, item) {
+
+  User.findOne({'_id': userId}, function(err, data) {
     if (err) {
       return res.status(500).json({err: err.message});
-    } else {
-      res.json({'user': item.user, 'wishlist': item.wishlist });
     }
+
+    data.wishlist.push(item);
+    data.save(function(err) {
+      if (err) {
+        return res.status(500).json({err: err.message});
+      } else {
+        console.log("new Item " + item + " was saved to the db");
+      }
+    })
   });
 });
 
 
 // ----------------------------------------------------------------
 // NOTE: PUT route to update existing list entries
-// added a parameter called 'id' to the url string
+
 router.put('/list/:id', function(req, res) {
   var userId = req.params.id;  // Params is the extra stuff attached to url (ie. mysite.com/list/:myParameter)
   var item = req.body;
 
-  console.log('id', userId);
-  console.log('item id', item._id);
-  console.log('item body', item);
-  // NOTE: put this block once wishlist has been located
-  // IF there is an item from request, and that item matches the request _ID
-  // if (item && item._id !== id) {
-  //   return res.status(500).json({err: "IDs don't match!"});
-  // }
 
-  // Find the users list item and update it
-  User.findOneAndUpdate({_id: item._id}, {$set:item}, {upsert: true, new: true}, function(err, data) {
+  // NOTE: Model.findOneAndUpdate(conditions, update, options, callback)
+  User.findOneAndUpdate(
+    { _id: userId, "wishlist._id": item._id },
+    { $set: { "wishlist.$": item } }, // The '$' operator is a 'positional' mongoDB operator, which holds the 'matched' position in the array
+    { new: true },
 
-    if (err) {
-      return res.status(500).json({err: err.message});
+    function(err, data) {
+      if (err) {
+        return res.status(500).json({err: err.message});
+      }
+      res.json({'wishlist': data});
     }
-    console.log("made it");
-    console.log('error', err, 'data', data);
-    res.json({ 'item': data });
-
-  });
+  );
 
 });
 
