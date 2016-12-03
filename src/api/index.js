@@ -39,7 +39,7 @@ router.get('/list/:id', function(req, res) {
 });
 
 // ----------------------------------------------------------------
-// NOTE: POST route to create new list entries
+// NOTE: POST route to create new list entries by using the mongoose.model.push method which pushes a new 'item' sub-model to the 'user' parent models 'wishlist', and then saves the parent to the database.
 router.post('/list/:userId', function(req, res) {
   var userId = req.params.userId
   var item = req.body;
@@ -53,9 +53,10 @@ router.post('/list/:userId', function(req, res) {
     data.save(function(err) {
       if (err) {
         return res.status(500).json({err: err.message});
-      } else {
-        console.log("new Item " + item + " was saved to the db");
       }
+      res.json({'wishlist': data});
+      console.log("new Item " + item + " was saved to the db");
+
     })
   });
 });
@@ -72,7 +73,7 @@ router.put('/list/:id', function(req, res) {
   // NOTE: Model.findOneAndUpdate(conditions, update, options, callback)
   User.findOneAndUpdate(
     { _id: userId, "wishlist._id": item._id },
-    { $set: { "wishlist.$": item } }, // The '$' operator is a 'positional' mongoDB operator, which holds the 'matched' position in the array
+    { $set: { "wishlist.$": item } }, // The '$' operator is a 'positional' mongoDB operator, which holds the 'matched' position in the array. NOTE: Must be in quotes! or it wont compile.
     { new: true },
 
     function(err, data) {
@@ -89,5 +90,30 @@ router.put('/list/:id', function(req, res) {
 // ----------------------------------------------------------------
 // TODO: Add DELETE route to delete list entries
 
+router.delete('/list/:userId', function(req, res) {
+  var userId = req.params.userId;
+  var itemId = req.query.itemId;
+
+  console.log('ITEM-ID', itemId);
+
+  User.findOne({'_id': userId}, function(err, data) {
+
+    if (err) {
+      return res.status(500).json({err: err.message});
+    }
+
+
+
+    data.wishlist.id(itemId).remove();
+    data.save(function(err) {
+      if (err) {
+        return res.status(500).json({err: err.message});
+      } else {
+        console.log("Item with ID '" + itemId + "' was deleted from the db");
+      }
+    });
+
+  });
+});
 
 module.exports = router;

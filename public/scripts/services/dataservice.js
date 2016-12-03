@@ -9,10 +9,19 @@ angular.module('listPlz')
     $http.get('/api/list').then(callback)
   }
 
-  this.deleteItem = function(item) {
-    console.log("The " + item.name + " item has been deleted!");
-    // other logic
+
+
+  this.deleteItem = function(userObjectId, itemToDelete) {
+    var request;
+
+    if (!itemToDelete._id) {
+      return console.log('Can not delete Item because it has no id.');
+    } else {
+      request = $http.delete('/api/list/' + userObjectId, {params: { 'itemId': itemToDelete._id }} );
+    }
   }
+
+
 
   // Saving new items.  NOTE: using the $q ('ie. queue') parameter in service
   this.saveItem = function(userObjectId, itemsToSave) {
@@ -28,17 +37,14 @@ angular.module('listPlz')
 
           // item = result.data.item;
           item = result.config.data;
-          console.log('---------');
-          console.log(result);
-          console.log(item);
-          console.log('---------');
+
           return item;
         });
       }
       queue.push(request);
     });
 
-    // $q.all runs all the requests in the queue array
+    // $q.all resolves all promises before returning results
     return $q.all(queue).then(function(results) {
       console.log("I saved " + itemsToSave.length + " items!");
     });

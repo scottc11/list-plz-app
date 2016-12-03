@@ -24,7 +24,11 @@ angular.module('listPlz')
   }
 
   $scope.deleteItem = function(item, $index) {
-    dataService.deleteItem(item);
+
+    var userObjectId = $scope.userObject._id;
+    var itemToDelete = item;
+
+    dataService.deleteItem(userObjectId, itemToDelete);
     $scope.wishlist.splice($index, 1);
   };
 
@@ -48,11 +52,16 @@ angular.module('listPlz')
     });
   }
 
+
+  // TODO: Only show delete button after item has been saved to db - or
+  // deal with a method to delete a newly created item BEFORE it gets saved to db.
+
   // TODO:
   // when ('add new' button clicked)
   //    add new item to list and init it with 'editing' == true
   // if (new item name == empty)
   //    display holder text of "click to edit"
 
+  // TODO: add a template for the header/navbar using ng-include
 
 });
