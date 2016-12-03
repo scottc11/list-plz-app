@@ -94,15 +94,11 @@ router.delete('/list/:userId', function(req, res) {
   var userId = req.params.userId;
   var itemId = req.query.itemId;
 
-  console.log('ITEM-ID', itemId);
-
   User.findOne({'_id': userId}, function(err, data) {
 
     if (err) {
       return res.status(500).json({err: err.message});
     }
-
-
 
     data.wishlist.id(itemId).remove();
     data.save(function(err) {
@@ -115,5 +111,20 @@ router.delete('/list/:userId', function(req, res) {
 
   });
 });
+
+// --------------------------------------------------------------------------------
+// TODO: /api/register (POST) – to handle new users registering
+
+
+// --------------------------------------------------------------------------------
+// TODO: /api/login (POST) – to handle returning users logging in
+
+
+// --------------------------------------------------------------------------------
+// TODO: /api/profile/USERID (GET) – to return profile details when given a USERID
+
+
+
+
 
 module.exports = router;

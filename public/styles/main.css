@@ -5,9 +5,10 @@
 /*        GLOBAL CLASSES                */
 /*--------------------------------------*/
 
-body {
-  background-color: rgb(233, 233, 233);
-}
+body {background-color: rgb(233, 233, 233);}
+
+.header-font {font-family: 'Roboto Mono', monospace; font-weight: 700;}
+.wishlist-font {font-family: 'Inconsolata', monospace; font-size: 2em; font-weight: 400;}
 
 .text-align-center {text-align: center;}
 .margin-top-40 {margin-top: 40px;}
@@ -16,6 +17,22 @@ body {
 .margin-top-20 {margin-top: 20px;}
 .margin-bottom-20 {margin-bottom: 20px;}
 .padding-top-bottom-40 {padding-top: 40px; padding-bottom: 40px;}
+
+
+/*--------------------------------------*/
+/*     HEADER and NAVBAR CLASSES        */
+/*--------------------------------------*/
+
+
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 40px;
+  text-align: right;
+}
+
+.nav ul li {display: inline-block;}
 
 
 /*--------------------------------------*/
