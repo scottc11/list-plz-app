@@ -51,7 +51,7 @@ userSchema.methods.validPassword = function(password) {
 
 
 
-// NOTE: return a JWT as a javascript object
+// NOTE: generate and return a JWT as a javascript object
 userSchema.methods.generateJwt = function() {
   var expiry = new Date();
   expiry.setDate(expiry.getDate() + 7);
