@@ -37,16 +37,16 @@ var userSchema = new mongoose.Schema({
 // To save the reference to the password we can create a new method called setPassword on the userSchema schema that accepts a password parameter. The method will then use crypto.randomBytes to set the salt, and crypto.pbkdf2Sync to set the hash.
 // NOTE: We’ll use this method when creating a user
 userSchema.methods.setPassword = function(password){
-  this.salt = crypto.randomBytes(16).toString('hex');
-  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+  this.userInfo.salt = crypto.randomBytes(16).toString('hex');
+  this.userInfo.hash = crypto.pbkdf2Sync(password, this.userInfo.salt, 1000, 64).toString('hex');
 };
 
 
 
 // NOTE: Checking the password by encrypting the salt and the password to see if the output matches the stored hash
 userSchema.methods.validPassword = function(password) {
-  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
-  return this.hash === hash;
+  var hash = crypto.pbkdf2Sync(password, this.userInfo.salt, 1000, 64).toString('hex');
+  return this.userInfo.hash === hash;
 };
 
 
@@ -58,8 +58,8 @@ userSchema.methods.generateJwt = function() {
 
   return jwt.sign({
     _id: this._id,
-    email: this.email,
-    name: this.name,
+    email: this.userInfo.email,
+    name: this.userInfo.name,
     exp: parseInt(expiry.getTime() / 1000),
   }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };

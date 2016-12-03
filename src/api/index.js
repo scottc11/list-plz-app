@@ -112,19 +112,6 @@ router.delete('/list/:userId', function(req, res) {
   });
 });
 
-// --------------------------------------------------------------------------------
-// TODO: /api/register (POST) – to handle new users registering
-
-
-// --------------------------------------------------------------------------------
-// TODO: /api/login (POST) – to handle returning users logging in
-
-
-// --------------------------------------------------------------------------------
-// TODO: /api/profile/USERID (GET) – to return profile details when given a USERID
-
-
-
 
 
 module.exports = router;
