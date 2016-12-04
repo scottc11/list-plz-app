@@ -3,12 +3,22 @@
 // THIS IS THE API module
 
 var express = require('express');
+var passport = require('passport');
+var mongoose = require('mongoose');
+var jwt = require('express-jwt');
+
+
 var User = require('../models/userSchema.js');
 
-
+// for authentication
+var auth = jwt({
+  secret: 'MY_SECRET',
+  userProperty: 'payload'  // default name would be userProperty: 'user' -- but that is our mongoose model name so we use payload instead
+});
 
 // defining a router to prefix things with the '/api' namespace
 var router = express.Router();
+
 
 
 //  NOTE: for some reason, the file extension can/needs to be excluded in the GET request
@@ -25,6 +35,8 @@ router.get('/list', function(req, res) {
 
 });
 
+
+
 // NOTE: GETTING specific user data.  Keep in mind that it always returns an Array, with all the matching object in that array.  Meaning, if there is only one matching object, you still have to select it with an index, then the following object keys
 router.get('/list/:id', function(req, res) {
   var id = req.params.id;
@@ -37,6 +49,8 @@ router.get('/list/:id', function(req, res) {
   });
 
 });
+
+
 
 // ----------------------------------------------------------------
 // NOTE: POST route to create new list entries by using the mongoose.model.push method which pushes a new 'item' sub-model to the 'user' parent models 'wishlist', and then saves the parent to the database.
@@ -111,6 +125,102 @@ router.delete('/list/:userId', function(req, res) {
 
   });
 });
+
+
+// --------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
+//         AUTHENTICATION              AUTHENTICATION               AUTHENTICATION
+// --------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
+/*
+1) take the data from the submitted form and create a new Mongoose model instance
+2) Call the setPassword method we created earlier to add the salt and the hash to the instance
+3) Save the instance as a record to the database
+4) Generate a JWT
+5) Send the JWT inside the JSON response
+*/
+
+
+// TODO: /api/register (POST) – to handle new users registering
+router.post('/list/register', function(req, res) {
+
+  if(!req.body.userInfo.name || !req.body.userInfo.email || !req.body.userInfo.password) {
+    sendJSONresponse(res, 400, {
+      "message": "All fields required"
+    });
+    return;
+  }
+
+
+  var user = new User();
+
+  user.userInfo.name = req.body.name;
+  user.userInfo.email = req.body.email;
+
+  user.setPassword(req.body.password);
+
+  user.save(function(err) {
+    var token;
+    token = user.generateJwt();
+    res.status(200);
+    res.json({
+      "token" : token
+    });
+  });
+});
+
+// --------------------------------------------------------------------------------
+// TODO: /api/login (POST) – to handle returning users logging in
+router.post('/list/login', function(req, res) {
+
+  passport.authenticate('local', function(err, user, info){
+    var token;
+
+    // If Passport throws/catches an error
+    if (err) {
+      res.status(404).json(err);
+      return;
+    }
+
+    // If a user is found
+    if(user){
+      token = user.generateJwt();
+      res.status(200);
+      res.json({
+        "token" : token
+      });
+    } else {
+      // If user is not found
+      res.status(401).json(info);
+    }
+  })(req, res);
+
+});
+
+// --------------------------------------------------------------------------------
+// TODO: /api/profile/USERID (GET) – to return profile details when given a USERID
+router.get('/profile', auth, function(req, res) {
+
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+    User
+      .findById(req.payload._id)
+      .exec(function(err, user) {
+        res.status(200).json(user);
+      });
+  }
+
+});
+
+
+
+
+
 
 
 
