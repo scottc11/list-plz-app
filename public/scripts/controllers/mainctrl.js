@@ -2,7 +2,7 @@
 
 angular.module('listPlz')
 
-.controller('mainCtrl', function($scope, dataService) {
+.controller('mainCtrl', function($scope, dataService, authService) {
 
 
   // GET THE WISH LIST DATA FROM api

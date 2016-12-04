@@ -102,7 +102,7 @@ router.put('/list/:id', function(req, res) {
 
 
 // ----------------------------------------------------------------
-// TODO: Add DELETE route to delete list entries
+// NOTE: DELETE route to delete list entries
 
 router.delete('/list/:userId', function(req, res) {
   var userId = req.params.userId;
@@ -141,9 +141,10 @@ router.delete('/list/:userId', function(req, res) {
 4) Generate a JWT
 5) Send the JWT inside the JSON response
 */
+// TODO: Profile GET route should be fleshed out with some more error trapping – for example if the user isn’t found
 
 
-// TODO: /api/register (POST) – to handle new users registering
+// NOTE: /api/register (POST) – to handle new users registering
 router.post('/list/register', function(req, res) {
 
   if(!req.body.userInfo.name || !req.body.userInfo.email || !req.body.userInfo.password) {
@@ -172,7 +173,7 @@ router.post('/list/register', function(req, res) {
 });
 
 // --------------------------------------------------------------------------------
-// TODO: /api/login (POST) – to handle returning users logging in
+// NOTE: /api/login (POST) – to handle returning users logging in
 router.post('/list/login', function(req, res) {
 
   passport.authenticate('local', function(err, user, info){
@@ -200,8 +201,9 @@ router.post('/list/login', function(req, res) {
 });
 
 // --------------------------------------------------------------------------------
-// TODO: /api/profile/USERID (GET) – to return profile details when given a USERID
-router.get('/profile', auth, function(req, res) {
+// NOTE: /api/profile/USERID (GET) – to return profile details when given a USERID
+// TODO: this should be fleshed out with some more error trapping – for example if the user isn’t found
+router.get('/list/profile', auth, function(req, res) {
 
   if (!req.payload._id) {
     res.status(401).json({
@@ -216,8 +218,6 @@ router.get('/profile', auth, function(req, res) {
   }
 
 });
-
-
 
 
 
