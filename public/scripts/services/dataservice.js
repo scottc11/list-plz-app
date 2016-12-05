@@ -50,4 +50,19 @@ angular.module('listPlz')
       console.log("I saved " + itemsToSave.length + " items!");
     });
   }
+
+  var getProfile = function () {
+    return $http.get('/api/profile', {
+      headers: {
+        Authorization: 'Bearer ' + authService.getToken()
+      }
+    });
+  };
+
+  //NOTE: careful with this return statement
+  return {
+    getProfile : getProfile
+  };
+
+
 });
