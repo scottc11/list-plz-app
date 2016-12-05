@@ -1,7 +1,7 @@
 
 <!-- NAVIGATION CONTROLLER -->
 
-<header ng-controller="navigationCtrl" class="container">
+<header ng-controller="navigationCtrl as nav" class="container">
   <div class="row">
 
     <div class="col-xs-12 col-sm-6 logo-container">
@@ -13,6 +13,8 @@
         <li><a href="/">HOME</a></li>
         <li><a href="/register">REGISTER</a></li>
         <li><a href="/login">LOGIN</a></li>
+        <li ng-hide="nav.isLoggedIn"><a href="/register">REGISTER++</a></li>
+        <li ng-show="nav.isLoggedIn"><a href="/login">LOGIN++</a></li>
       </ul>
     </div>
   </div>

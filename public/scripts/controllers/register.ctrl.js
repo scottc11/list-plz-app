@@ -11,7 +11,7 @@ angular.module('listPlz')
 
   .controller('registerCtrl', function($location, authService) {
     var vm = this;
-
+    console.log('register controller hooked up');
     vm.credentials = {
       name : "",
       email : "",

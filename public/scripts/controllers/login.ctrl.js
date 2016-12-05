@@ -5,6 +5,7 @@
 angular.module('listPlz')
   .controller('loginCtrl', function($location, authService) {
     var vm = this;
+    console.log('Login controller hooked up');
 
     vm.credentials = {
       email : "",

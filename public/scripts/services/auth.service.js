@@ -32,6 +32,7 @@ angular.module('listPlz')
     return $window.localStorage['mean-token'];
   };
 
+
   var isLoggedIn = function() {
     var token = getToken();
     var payload;
@@ -78,13 +79,15 @@ angular.module('listPlz')
   };
 
   this.logout = function() {
-    $window.localStorage.removeItem('mean-token');
+    if ($window.localStorage['mean-token']) {
+      $window.localStorage.removeItem('mean-token');
+    }
   };
 
   return {
     saveToken: saveToken,
-    getToken: getToken,
-    logout: logout
+    getToken: getToken
+    // logout: logout
   };
 
 });

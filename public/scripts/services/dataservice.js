@@ -2,7 +2,7 @@
 
 angular.module('listPlz')
 
-.service('dataService', function($http, $q) {
+.service('dataService', function($http, $q, authService) {
 
   // THIS IS WHERE THE SERVICE WILL CONNECT WITH DATA API
   this.getWishlist = function(callback) {
