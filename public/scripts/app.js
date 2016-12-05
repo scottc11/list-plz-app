@@ -4,7 +4,7 @@
 angular.module('listPlz', ['ngRoute'])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.when('/register', {templateUrl: '../templates/register.html'});
-    $routeProvider.when('/rando', {templateUrl: '../templates/rando.html'});
+    $routeProvider.when('/login', {templateUrl: '../templates/login.html'});
     $routeProvider.otherwise({redirectTo: '/'});
 
     $locationProvider.html5Mode({enabled: true, requireBase: false});

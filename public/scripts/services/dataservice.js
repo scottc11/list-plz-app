@@ -31,6 +31,7 @@ angular.module('listPlz')
     itemsToSave.forEach(function(item) {
       var request;
       if (!item._id) { // if item has no id, POST the item to database
+        console.log("Item has no ID stage");
         request = $http.post('/api/list/' + userObjectId, item);
       } else {
         request = $http.put('/api/list/' + userObjectId, item).then(function(result) {

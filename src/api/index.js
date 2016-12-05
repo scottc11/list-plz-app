@@ -82,7 +82,7 @@ router.post('/list/:userId', function(req, res) {
 router.put('/list/:id', function(req, res) {
   var userId = req.params.id;  // Params is the extra stuff attached to url (ie. mysite.com/list/:myParameter)
   var item = req.body;
-
+  console.log("got the request body");
 
   // NOTE: Model.findOneAndUpdate(conditions, update, options, callback)
   User.findOneAndUpdate(
@@ -92,6 +92,7 @@ router.put('/list/:id', function(req, res) {
 
     function(err, data) {
       if (err) {
+        console.log('its happening here');
         return res.status(500).json({err: err.message});
       }
       res.json({'wishlist': data});
