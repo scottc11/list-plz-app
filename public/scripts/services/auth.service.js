@@ -27,6 +27,7 @@ angular.module('listPlz')
   var self = this;
 
   var saveToken = function(token) {
+    console.log('TOKEN from Post./register/ route:  ', token);
     $window.localStorage['mean-token'] = token;
   };
 
@@ -71,8 +72,9 @@ angular.module('listPlz')
   // All functions below used to be declared using 'this.'
   var register = function(user) {
     return $http.post('/api/auth/register/', user)
-        .then(function(data) {
-          saveToken(data.token);
+        .then(function(response) {
+          console.log("Then block response: ", response.data.token);
+          saveToken(response.data.token);
         },
         function(error) {
           console.log('error: ', error.data.status, ' message: ', error.data.err);

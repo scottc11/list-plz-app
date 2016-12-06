@@ -7,10 +7,10 @@ angular.module('listPlz')
     vm.user = {};
 
     dataService.getProfile()
-      .success(function(data) {
-        vm.user = data;
-      })
-      .error(function (error) {
+      .then(function(userData) {
+        vm.user = userData;
+      },
+      function (error) {
         console.log(error);
       });
 

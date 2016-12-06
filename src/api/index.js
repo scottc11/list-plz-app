@@ -184,7 +184,7 @@ router.post('/auth/register', function(req, res) {
 
 // --------------------------------------------------------------------------------
 // NOTE: /api/login (POST) – to handle returning users logging in
-router.post('/list/login', function(req, res) {
+router.post('/auth/login', function(req, res) {
 
   passport.authenticate('local', function(err, user, info){
     var token;
@@ -213,8 +213,8 @@ router.post('/list/login', function(req, res) {
 // --------------------------------------------------------------------------------
 // NOTE: /api/profile/USERID (GET) – to return profile details when given a USERID
 // TODO: this should be fleshed out with some more error trapping – for example if the user isn’t found
-router.get('/list/profile', auth, function(req, res) {
-
+router.get('/auth/profile', auth, function(req, res) {
+  
   if (!req.payload._id) {
     res.status(401).json({
       "message" : "UnauthorizedError: private profile"

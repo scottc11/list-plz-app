@@ -52,11 +52,18 @@ angular.module('listPlz')
   }
 
   this.getProfile = function() {
-    return $http.get('/api/profile', {
+    return $http.get('/api/auth/profile/', {
       headers: {
-        Authorization: 'Bearer ' + authService.getToken()
+        Authorization: 'Bearer ' + authService.getToken()  // This is a OAuth 2.0 bearer token. -- WebServer specific
       }
-    });
+    }).then(
+      function(response){
+        console.log(response.data);
+        return response.data;
+      },
+      function(error){
+        console.log(error);
+      });
   };
 
   //NOTE: careful with this return statement
