@@ -27,6 +27,7 @@ router.get('/list', function(req, res) {
   // getting the data from database via mongoose model (models/list.js)
   User.find({}, function(err, user) {
     if (err) {
+      console.log('going to get./list');
       return res.status(500).json({message: err.message});
     } else {
       res.json( { user: user } );
@@ -42,6 +43,7 @@ router.get('/list/:id', function(req, res) {
   var id = req.params.id;
   User.find( { _id: id } , function(err, user) {
     if (err) {
+      console.log('going to get./list/:id');
       return res.status(500).json({message: err.message});
     } else {
       res.json( { user: user } );
@@ -60,6 +62,7 @@ router.post('/list/:userId', function(req, res) {
 
   User.findOne({'_id': userId}, function(err, data) {
     if (err) {
+      console.log('going to post./list/:userId');
       return res.status(500).json({err: err.message});
     }
 
@@ -112,6 +115,7 @@ router.delete('/list/:userId', function(req, res) {
   User.findOne({'_id': userId}, function(err, data) {
 
     if (err) {
+      console.log('going to delete./list/:userId');
       return res.status(500).json({err: err.message});
     }
 
@@ -146,9 +150,9 @@ router.delete('/list/:userId', function(req, res) {
 
 
 // NOTE: /api/register (POST) – to handle new users registering
-router.post('/list/register', function(req, res) {
-
-  if(!req.body.userInfo.name || !req.body.userInfo.email || !req.body.userInfo.password) {
+router.post('/auth/register', function(req, res) {
+  console.log(req.body);
+  if(!req.body.name || !req.body.email || !req.body.password) {
     sendJSONresponse(res, 400, {
       "message": "All fields required"
     });
@@ -164,6 +168,11 @@ router.post('/list/register', function(req, res) {
   user.setPassword(req.body.password);
 
   user.save(function(err) {
+
+    if (err) {
+      console.log("new user couldn't be saved ", err);
+    }
+
     var token;
     token = user.generateJwt();
     res.status(200);

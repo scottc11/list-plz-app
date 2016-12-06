@@ -24,6 +24,8 @@ angular.module('listPlz')
 
 .service('authService', function($http, $window) {
 
+  var self = this;
+
   var saveToken = function(token) {
     $window.localStorage['mean-token'] = token;
   };
@@ -65,29 +67,39 @@ angular.module('listPlz')
       };
     }
   };
-
-  this.register = function(user) {
-    return $http.post('/api/list/register', user).success(function(data){
-      saveToken(data.token);
-    });
+  //Cast to ObjectId failed for value "register" at path "_id"
+  // All functions below used to be declared using 'this.'
+  var register = function(user) {
+    return $http.post('/api/auth/register/', user)
+        .then(function(data) {
+          saveToken(data.token);
+        },
+        function(error) {
+          console.log('error: ', error.data.status, ' message: ', error.data.err);
+        });
   };
 
-  this.login = function(user) {
+  var login = function(user) {
+    console.log('made it');
     return $http.post('/api/list/login', user).success(function(data) {
       saveToken(data.token);
     });
-  };
+  }
 
-  this.logout = function() {
+  var logout = function() {
     if ($window.localStorage['mean-token']) {
       $window.localStorage.removeItem('mean-token');
     }
   };
 
   return {
-    saveToken: saveToken,
-    getToken: getToken
-    // logout: logout
+    currentUser : currentUser,
+    saveToken : saveToken,
+    getToken : getToken,
+    isLoggedIn : isLoggedIn,
+    register : register,
+    login : login,
+    logout : logout
   };
 
 });

@@ -51,7 +51,7 @@ angular.module('listPlz')
     });
   }
 
-  var getProfile = function () {
+  this.getProfile = function() {
     return $http.get('/api/profile', {
       headers: {
         Authorization: 'Bearer ' + authService.getToken()
@@ -60,9 +60,9 @@ angular.module('listPlz')
   };
 
   //NOTE: careful with this return statement
-  return {
-    getProfile : getProfile
-  };
+  // return {
+  //   getProfile : getProfile
+  // };
 
 
 });

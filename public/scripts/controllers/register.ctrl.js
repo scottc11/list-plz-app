@@ -9,8 +9,9 @@
 
 angular.module('listPlz')
 
-  .controller('registerCtrl', function($location, authService) {
+  .controller('registerCtrl', ['$location', 'authService', function($location, authService) {
     var vm = this;
+    console.log(authService);
     console.log('register controller hooked up');
     vm.credentials = {
       name : "",
@@ -18,15 +19,13 @@ angular.module('listPlz')
       password : ""
     };
 
-    vm.onSubmit = function () {
+    vm.onSubmit = function() {
       console.log('Submitting registration');
-      authService
-        .register(vm.credentials)
-        .error(function(err){
-          alert(err);
-        })
+      console.log(vm.credentials);
+      authService.register(vm.credentials)
         .then(function(){
-          $location.path('profile');
+          console.log('redirect to user profile page');
+          // $location.path('profile');
         });
     };
-  });
+  }]);

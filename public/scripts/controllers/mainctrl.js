@@ -4,13 +4,13 @@ angular.module('listPlz')
 
 .controller('mainCtrl', function($scope, dataService) {
 
-
+  console.log('dataService', dataService);
   // GET THE WISH LIST DATA FROM api
   dataService.getWishlist(function(response) {
     console.log(response.data);
-    $scope.userObject = response.data.user[1];
-    $scope.userInfo = response.data.user[1]['userInfo'];
-    $scope.wishlist = response.data.user[1]['wishlist'];
+    $scope.userObject = response.data.user[0];
+    $scope.userInfo = response.data.user[0]['userInfo'];
+    $scope.wishlist = response.data.user[0]['wishlist'];
   });
 
   $scope.addItem = function() {
