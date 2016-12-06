@@ -182,39 +182,44 @@ router.post('/auth/register', function(req, res) {
   });
 });
 
+
+
 // --------------------------------------------------------------------------------
 // NOTE: /api/login (POST) – to handle returning users logging in
-router.post('/auth/login', function(req, res) {
-
-  passport.authenticate('local', function(err, user, info){
+// NOTE: Passport.authenticate passes some variables call err, user, and info into the next function(req, res){}
+//       Passport configuration found in "/config/passport.js"
+router.post('/auth/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
     var token;
 
-    // If Passport throws/catches an error
+    // error
     if (err) {
       res.status(404).json(err);
       return;
     }
 
-    // If a user is found
-    if(user){
+    // if a user is foound
+    if (user) {
+      console.log("There was a user found!!!!");
       token = user.generateJwt();
       res.status(200);
-      res.json({
-        "token" : token
-      });
-    } else {
-      // If user is not found
+      res.json({'token': token});
+    }
+    // if no user is found
+    else {
       res.status(401).json(info);
     }
-  })(req, res);
-
+  })(req, res, next);
 });
+
+
+
 
 // --------------------------------------------------------------------------------
 // NOTE: /api/profile/USERID (GET) – to return profile details when given a USERID
 // TODO: this should be fleshed out with some more error trapping – for example if the user isn’t found
 router.get('/auth/profile', auth, function(req, res) {
-  
+
   if (!req.payload._id) {
     res.status(401).json({
       "message" : "UnauthorizedError: private profile"

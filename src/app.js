@@ -19,6 +19,7 @@ require('./config/passport');
 app.use('/', express.static('public'));
 app.use(parser.json());
 app.use(passport.initialize());
+// app.use(passport.session());
 
 app.use('/api', router);
 

@@ -13,13 +13,14 @@ angular.module('listPlz')
     };
 
     vm.onSubmit = function () {
+
       authService
         .login(vm.credentials)
-        .error(function(err){
-          alert(err);
-        })
         .then(function(){
-          $location.path('profile');
+          console.log("redirect to profile page");
+          // $location.path('profile');
+        }, function(err){
+          alert(err);
         });
     };
   }

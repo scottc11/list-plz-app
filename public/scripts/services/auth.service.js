@@ -27,7 +27,6 @@ angular.module('listPlz')
   var self = this;
 
   var saveToken = function(token) {
-    console.log('TOKEN from Post./register/ route:  ', token);
     $window.localStorage['mean-token'] = token;
   };
 
@@ -68,6 +67,7 @@ angular.module('listPlz')
       };
     }
   };
+
   //Cast to ObjectId failed for value "register" at path "_id"
   // All functions below used to be declared using 'this.'
   var register = function(user) {
@@ -81,12 +81,15 @@ angular.module('listPlz')
         });
   };
 
+
   var login = function(user) {
-    console.log('made it');
-    return $http.post('/api/list/login', user).success(function(data) {
-      saveToken(data.token);
+    return $http.post('/api/auth/login', user).then(function(response) {
+      saveToken(response.data.token);
+    }, function(error) {
+      console.log("Authorization error", error.data);
     });
   }
+
 
   var logout = function() {
     if ($window.localStorage['mean-token']) {
