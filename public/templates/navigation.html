@@ -11,10 +11,11 @@
     <div class="col-xs-12 col-sm-6 nav">
       <ul>
         <li><a href="/">HOME</a></li>
-        <li ng-hide="nav.isLoggedIn"><a href="/register">REGISTER++</a></li>
-        <li ng-hide="nav.isLoggedIn"><a href="/login">LOGIN++</a></li>
+        <li ng-hide="nav.isLoggedIn"><a href="/register">Sign Up</a></li>
+        <li ng-hide="nav.isLoggedIn"><a href="/login">Login</a></li>
+        <li ng-show="nav.isLoggedIn"><a href="/wishlist">My Wishlist</a></li>
         <li ng-show="nav.isLoggedIn"><a href="/profile">{{ nav.currentUser.name }}</a></li>
-        <li ng-show="nav.isLoggedIn" ng-click="nav.logout()"><a href="/">LOGOUT</a></li>
+        <li ng-show="nav.isLoggedIn" ng-click="nav.logout()"><a href="/">Logout</a></li>
       </ul>
     </div>
   </div>

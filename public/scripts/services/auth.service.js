@@ -60,6 +60,7 @@ angular.module('listPlz')
       payload = $window.atob(payload);
       payload = JSON.parse(payload);
       return {
+        _id: payload._id,
         email : payload.email,
         name : payload.name
       };

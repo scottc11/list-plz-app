@@ -20,6 +20,11 @@ angular.module('listPlz', ['ngRoute'])
         controller: 'profileCtrl',
         controllerAs: 'vm'
       })
+      .when('/wishlist', {
+        templateUrl: '../templates/wishlist.html',
+        controller: 'wishlistCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
 
     $locationProvider.html5Mode({enabled: true, requireBase: false});

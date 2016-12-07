@@ -21,8 +21,8 @@ var router = express.Router();
 
 
 
-//  NOTE: for some reason, the file extension can/needs to be excluded in the GET request
-router.get('/list', function(req, res) {
+
+router.get('/list/', function(req, res) {
 
   // getting the data from database via mongoose model (models/list.js)
   User.find({}, function(err, user) {
@@ -39,11 +39,10 @@ router.get('/list', function(req, res) {
 
 
 // NOTE: GETTING specific user data.  Keep in mind that it always returns an Array, with all the matching object in that array.  Meaning, if there is only one matching object, you still have to select it with an index, then the following object keys
-router.get('/list/:id', function(req, res) {
-  var id = req.params.id;
-  User.find( { _id: id } , function(err, user) {
+router.get('/list/:userId', function(req, res) {
+  var id = req.params.userId;
+  User.findOne({ _id: id } , function(err, user) {
     if (err) {
-      console.log('going to get./list/:id');
       return res.status(500).json({message: err.message});
     } else {
       res.json( { user: user } );
@@ -85,7 +84,6 @@ router.post('/list/:userId', function(req, res) {
 router.put('/list/:id', function(req, res) {
   var userId = req.params.id;  // Params is the extra stuff attached to url (ie. mysite.com/list/:myParameter)
   var item = req.body;
-  console.log("got the request body");
 
   // NOTE: Model.findOneAndUpdate(conditions, update, options, callback)
   User.findOneAndUpdate(
@@ -95,9 +93,9 @@ router.put('/list/:id', function(req, res) {
 
     function(err, data) {
       if (err) {
-        console.log('its happening here');
         return res.status(500).json({err: err.message});
       }
+      console.log('Saved edited Item to DB');
       res.json({'wishlist': data});
     }
   );

@@ -5,8 +5,8 @@ angular.module('listPlz')
 .service('dataService', function($http, $q, authService) {
 
   // THIS IS WHERE THE SERVICE WILL CONNECT WITH DATA API
-  this.getWishlist = function(callback) {
-    $http.get('/api/list').then(callback)
+  this.getWishlist = function(userId, callback) {
+    $http.get('/api/list/' + userId).then(callback)
   }
 
 
@@ -35,10 +35,7 @@ angular.module('listPlz')
         request = $http.post('/api/list/' + userObjectId, item);
       } else {
         request = $http.put('/api/list/' + userObjectId, item).then(function(result) {
-
-          // item = result.data.item;
           item = result.config.data;
-
           return item;
         });
       }
