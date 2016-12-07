@@ -28,7 +28,9 @@ angular.module('listPlz', ['ngRoute'])
   /*
   TODO: make a route accessible only to logged in users, by protecting the /profile path.
 
-  To do this we need to check whenever the route changes in the Angular app by using a watcher on $routeChangeStart. When a new route is selected we need to check whether it is the profile page, and whether the user is logged in. If it is the profile page and the user is not logged in, then we’ll redirect to the homepage
+  To do this we need to check whenever the route changes in the Angular app by using a watcher on $routeChangeStart.
+  When a new route is selected we need to check whether it is the profile page, and whether the user is logged in. If
+  it is the profile page and the user is not logged in, then we’ll redirect to the homepage
 
   - $rootScope to listen for the $routeChangeStart event
   - $location to see what the new path is
@@ -40,6 +42,10 @@ angular.module('listPlz', ['ngRoute'])
     $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
       if ($location.path() === '/profile' && !authService.isLoggedIn) {
         $location.path('/');
+      }
+      // updating the nav when logging in
+      if ($location.path() === '/profile' && authService.isLoggedIn) {
+        $rootScope.updateNav();
       }
     });
   }]);

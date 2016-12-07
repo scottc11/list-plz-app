@@ -39,8 +39,6 @@ angular.module('listPlz')
     var token = getToken();
     var payload;
 
-    console.log('TOKEN from auth.service.js:  ', token);
-
     // if token exits, validate it to see if it has expired
     if(token){
       payload = token.split('.')[1]; // token is a string like this "string(ie.header).string(ie. payload).string(ie. signature)"
@@ -94,6 +92,7 @@ angular.module('listPlz')
   var logout = function() {
     if ($window.localStorage['mean-token']) {
       $window.localStorage.removeItem('mean-token');
+      console.log('Logged out user.');
     }
   };
 

@@ -1,12 +1,23 @@
 'use strict';
 
 angular.module('listPlz')
-  .controller('navigationCtrl', function($location, authService) {
+  .controller('navigationCtrl', function($rootScope, $location, authService) {
     var vm = this;
-    console.log("nav controller hooked up");
 
-    vm.isLoggedIn = authService.isLoggedIn;
-    
-    vm.currentUser = authService.currentUser;
+
+    $rootScope.updateNav = function() {
+      vm.isLoggedIn = authService.isLoggedIn();
+      vm.currentUser = authService.currentUser();
+    }
+
+    vm.logout = function() {
+      authService.logout();
+      vm.isLoggedIn = authService.isLoggedIn();
+    }
+
+
+    vm.isLoggedIn = authService.isLoggedIn();
+    vm.currentUser = authService.currentUser();
+
   }
 );

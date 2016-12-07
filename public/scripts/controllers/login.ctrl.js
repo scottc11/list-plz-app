@@ -5,7 +5,6 @@
 angular.module('listPlz')
   .controller('loginCtrl', function($location, authService) {
     var vm = this;
-    console.log('Login controller hooked up');
 
     vm.credentials = {
       email : "",
@@ -17,8 +16,7 @@ angular.module('listPlz')
       authService
         .login(vm.credentials)
         .then(function(){
-          console.log("redirect to profile page");
-          // $location.path('profile');
+          $location.path('profile');
         }, function(err){
           alert(err);
         });

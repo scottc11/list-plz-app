@@ -4,7 +4,6 @@ angular.module('listPlz')
 
 .controller('mainCtrl', function($scope, dataService) {
 
-  console.log('dataService', dataService);
   // GET THE WISH LIST DATA FROM api
   dataService.getWishlist(function(response) {
     console.log(response.data);
