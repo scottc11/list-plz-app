@@ -9,6 +9,7 @@ var jwt = require('express-jwt');
 
 
 var User = require('../models/userSchema.js');
+var Group = require('../models/groupSchema.js');
 
 // for authentication
 var auth = jwt({
@@ -19,12 +20,22 @@ var auth = jwt({
 // defining a router to prefix things with the '/api' namespace
 var router = express.Router();
 
+router.get('/groups/', function(req, res) {
 
+  // getting the data from database via mongoose model (models/groupSchema.js)
+  Group.find({}, function(err, groupsArray) {
+    if (err) {
+      return res.status(500).json({message: err.message});
+    } else {
+      res.json( { groups: groupsArray } );
+    }
+  });
+});
 
 
 router.get('/list/', function(req, res) {
 
-  // getting the data from database via mongoose model (models/list.js)
+  // getting the data from database via mongoose model (models/userSchema.js)
   User.find({}, function(err, user) {
     if (err) {
       console.log('going to get./list');
@@ -33,7 +44,6 @@ router.get('/list/', function(req, res) {
       res.json( { user: user } );
     }
   });
-
 });
 
 
@@ -157,7 +167,7 @@ router.post('/auth/register', function(req, res) {
     return;
   }
 
-
+  var group = new Group();
   var user = new User();
 
   user.userInfo.name = req.body.name;
@@ -180,6 +190,71 @@ router.post('/auth/register', function(req, res) {
   });
 });
 
+
+// --------------------------------------------------------------------------------
+// NOTE: GET all the groupCodes to check for duplicates
+
+router.get('/auth/validateGroupCode/:groupCode', function(req, res) {
+  var _groupCode = req.params.groupCode;
+  Group.find({ 'groupCode': _groupCode }, function(err, data) {
+    // error
+    if (err) {
+      return res.status(500).json({err: err.message});
+    } else {
+      // Group Exists
+      if (data.length >= 1) {
+        return res.status(200).json({ groupCode: _groupCode });
+      }
+      // Group does not exist
+      if ( data.length === 0 ) {
+        return res.status(202).json({ groupCode: _groupCode });
+      }
+    }
+  });
+});
+
+
+// --------------------------------------------------------------------------------
+// NOTE: CREATE a new group in database
+
+router.post('/auth/createGroup', function(req, res) {
+
+  var userId = '5840a4c242fa665ee7248182';
+  var testCode = '5wcx0';
+
+  var group = new Group();
+
+  group.name = "MyGroupName";
+  group.userIds.push(userId);
+  // group.generateGroupCode();
+  group.groupCode = testCode;
+
+  // See groupSchema.js file to view this methods code.
+  group.validateGroupCode(function() {
+
+    group.save(function(err) {
+      if (err) {
+        return res.status(500).json({err: err.message});
+      } else {
+        console.log('Group with group code: ', group.groupCode, ' was created and added to DB');
+        return res.status(201).json({'group': group});
+      }
+    });
+  });
+
+
+
+});
+
+// --------------------------------------------------------------------------------
+// NOTE: GET an existing group from database
+
+router.get('/auth/group/:groupCode', function(req, res) {
+  var _groupCode = req.params.groupCode;
+  Group.find({_id: _groupCode}, function(err, data) {
+    res.json({group: data});
+  })
+});
 
 
 // --------------------------------------------------------------------------------

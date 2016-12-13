@@ -1,4 +1,3 @@
-
 'use strict';
 
 var mongoose = require('mongoose');
@@ -30,7 +29,8 @@ var userSchema = new mongoose.Schema({
     hash: String,
     salt: String
   },
-  wishlist: [ ItemSchema ]
+  wishlist: [ ItemSchema ],
+  groupCode: String
 });
 
 

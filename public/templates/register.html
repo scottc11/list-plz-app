@@ -3,9 +3,9 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-xs-12 col-md-6">
       <h1>Register</h1>
-      <p class="lead">Already a member? Please <a href="login">log in</a> instead.</p>
+      <p class="lead">Already a member? Please <a href="/login">log in</a> instead.</p>
       <form ng-submit="vm.onSubmit()">
         <div class="form-group">
           <label for="name">Full name</label>
@@ -19,7 +19,24 @@
           <label for="password">Password</label>
           <input type="password" class="form-control" id="password" placeholder="Password" ng-model="vm.credentials.password">
         </div>
+        <div class="form-group">
+
+              <label>
+                <input type="radio" name="group" ng-model="vm.groupOption" value="create">
+                  Would you like to create a group for other wishlisters to join?
+              </label>
+
+
+              <label>
+                <input type="radio" name="group" ng-model="vm.groupOption" value="join">
+                  Or would you like to join an existing group of wishlisters?
+              </label>
+
+          <h4 ng-show="vm.groupOption == 'create'">You will be assigned a group code upon registration, which can be found in your user profile.</h4>
+          <input ng-model="vm.groupCode" ng-blur="vm.checkGroupCode()" ng-show="vm.groupOption == 'join' " type="text" class="form-control" id="groupCode" placeholder="Enter Group Code here...">
+        </div>
         <button type="submit" class="btn btn-default">Register!</button>
+        <button type="button" ng-click="vm.buildGroup()" class="btn btn-default">Build Group</button>
       </form>
     </div>
   </div>

@@ -51,6 +51,19 @@ angular.module('listPlz')
     }
   };
 
+  // Checking to see if a group exists when 'joining' an already created group
+  var groupCodeExists = function(code, callback) {
+    var isValid = $http.get('api/auth/validateGroupCode/' + code)
+      .then(callback);
+  }
+
+  var createGroup = function() {
+    $http.post('api/auth/createGroup')
+      .then(function(response) {
+        console.log(response);
+      });
+  }
+
   // get the details of the logged in user.
   // This will extract the email and name from the JWT and return them inside an object ready to be used.
   var currentUser = function() {
@@ -102,6 +115,8 @@ angular.module('listPlz')
     saveToken : saveToken,
     getToken : getToken,
     isLoggedIn : isLoggedIn,
+    groupCodeExists : groupCodeExists,
+    createGroup : createGroup,
     register : register,
     login : login,
     logout : logout

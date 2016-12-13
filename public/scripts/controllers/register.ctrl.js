@@ -5,27 +5,55 @@
 - Update the navigation to reflect the user’s status
 - Only allow logged in users access to the /profile route
 - Call the protected /api/profile API route
+- create a generator for the groupCode
 */
 
 angular.module('listPlz')
 
-  .controller('registerCtrl', ['$location', 'authService', function($location, authService) {
+  .controller('registerCtrl', ['$scope', '$location', 'authService', 'dataService', function($scope, $location, authService, dataService) {
     var vm = this;
-    console.log(authService);
-    console.log('register controller hooked up');
+
     vm.credentials = {
       name : "",
       email : "",
+      groupCode: "",
       password : ""
     };
 
+    vm.groupOption = "";
+    vm.groupCode = "";
+    vm.groupCodeExists;
+
+    // check if group code exists in DB on 'blur'
+    vm.checkGroupCode = function() {
+      authService.groupCodeExists(vm.groupCode, function(response) {
+        console.log(response);
+        if (response.status == 200) {
+          console.log('Group code: ' + response.data.groupCode +  ' currently exists.');
+          vm.groupCodeExists = true;
+        }
+        if (response.status == 202) {
+          console.log('Group code: ' + response.data.groupCode +  ' does not exist.');
+          vm.groupCodeExists = false;
+        }
+      });
+    }
+
+    vm.buildGroup = function() {
+      if (vm.groupOption === "create") {
+        authService.createGroup();
+      }
+    }
+
+
     vm.onSubmit = function() {
-      console.log('Submitting registration');
+
       console.log(vm.credentials);
       authService.register(vm.credentials)
+        // redirect to profile page
         .then(function(){
-          console.log('redirect to user profile page');
-          // $location.path('profile');
+          $location.path('/profile');
         });
     };
+
   }]);

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Work XMAS Lists",
+    "userIds": ["userId1", "userId2", "userId3"],
+    "groupCode": "45yt9"
+  },
+  {
+    "name": "Jim Bobs group",
+    "userIds": ["userId1", "userId2", "userId3"],
+    "groupCode": "5rt89"
+  },
+  {
+    "name": "Campbells",
+    "userIds": ["userId1", "userId2", "userId3"],
+    "groupCode": "9i6v8"
+  }
+]

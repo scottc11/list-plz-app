@@ -1,6 +1,12 @@
 
 
 
+/*#4d7da6
+#a5d7fe
+#a5feba
+#5a8b7a
+#70b7f3*/
+
 /*--------------------------------------*/
 /*        GLOBAL CLASSES                */
 /*--------------------------------------*/
@@ -17,12 +23,12 @@ body {background-color: rgb(233, 233, 233);}
 .margin-top-20 {margin-top: 20px;}
 .margin-bottom-20 {margin-bottom: 20px;}
 .padding-top-bottom-40 {padding-top: 40px; padding-bottom: 40px;}
+.padding-10 {padding: 10px;};
 
 
 /*--------------------------------------*/
 /*     HEADER and NAVBAR CLASSES        */
 /*--------------------------------------*/
-
 
 
 .nav ul {
@@ -70,4 +76,13 @@ body {background-color: rgb(233, 233, 233);}
 .actions {
   display: inline-block;
   float: right;
+}
+
+/*--------------------------------------*/
+/*        REGISTER CLASSES              */
+/*--------------------------------------*/
+
+.reg-choice {
+  border-radius: 10px;
+  background-color: rgb(170, 138, 56);
 }
