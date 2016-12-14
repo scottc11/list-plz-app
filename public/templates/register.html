@@ -22,21 +22,22 @@
         <div class="form-group">
 
               <label>
-                <input type="radio" name="group" ng-model="vm.groupOption" value="create">
+                <input type="radio" name="group" ng-model="vm.credentials.groupOption" value="CREATE">
                   Would you like to create a group for other wishlisters to join?
               </label>
 
 
               <label>
-                <input type="radio" name="group" ng-model="vm.groupOption" value="join">
+                <input type="radio" name="group" ng-model="vm.credentials.groupOption" value="JOIN">
                   Or would you like to join an existing group of wishlisters?
               </label>
 
-          <h4 ng-show="vm.groupOption == 'create'">You will be assigned a group code upon registration, which can be found in your user profile.</h4>
-          <input ng-model="vm.groupCode" ng-blur="vm.checkGroupCode()" ng-show="vm.groupOption == 'join' " type="text" class="form-control" id="groupCode" placeholder="Enter Group Code here...">
+          <h4 ng-show="vm.credentials.groupOption == 'CREATE'">You will be assigned a group code upon registration, which can be found in your user profile.</h4>
+          <input id="group-name" ng-show="vm.credentials.groupOption == 'CREATE'" type="text" placeholder="Enter a name to represent your groups wishlist..." ng-model="vm.credentials.groupName">
+          <input ng-model="vm.credentials.groupCode" ng-blur="vm.checkGroupCode()" ng-show="vm.credentials.groupOption == 'JOIN' " type="text" class="form-control" id="groupCode" placeholder="Enter Group Code here...">
         </div>
         <button type="submit" class="btn btn-default">Register!</button>
-        <button type="button" ng-click="vm.buildGroup()" class="btn btn-default">Build Group</button>
+        <!-- <button type="button" ng-click="vm.buildGroup()" class="btn btn-default">Build Group</button> -->
       </form>
     </div>
   </div>

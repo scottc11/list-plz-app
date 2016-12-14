@@ -80,16 +80,16 @@ angular.module('listPlz')
     }
   };
 
-  //Cast to ObjectId failed for value "register" at path "_id"
+
   // All functions below used to be declared using 'this.'
   var register = function(user) {
     return $http.post('/api/auth/register/', user)
         .then(function(response) {
-          console.log("Then block response: ", response.data.token);
+          console.log(response);
           saveToken(response.data.token);
         },
         function(error) {
-          console.log('error: ', error.data.status, ' message: ', error.data.err);
+          console.log('error: ', error);
         });
   };
 

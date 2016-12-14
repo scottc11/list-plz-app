@@ -167,27 +167,96 @@ router.post('/auth/register', function(req, res) {
     return;
   }
 
-  var group = new Group();
-  var user = new User();
 
-  user.userInfo.name = req.body.name;
-  user.userInfo.email = req.body.email;
 
-  user.setPassword(req.body.password);
+  // CREATING GROUP ------ CREATING GROUP ------ CREATING GROUP ------ CREATING GROUP
+  if (req.body.groupOption === "CREATE") {
+    var group = new Group();
 
-  user.save(function(err) {
 
-    if (err) {
-      console.log("new user couldn't be saved ", err);
-    }
+    var user = new User();
 
-    var token;
-    token = user.generateJwt();
-    res.status(200);
-    res.json({
-      "token" : token
+    user.userInfo.name = req.body.name;
+    user.userInfo.email = req.body.email;
+    user.groupId = group._id;
+    user.setPassword(req.body.password);
+
+    user.save(function(err) {
+      if (err) {
+        console.log("new user couldn't be saved ", err);
+      }
+      console.log('*** New User: ', user.userInfo.name, ' was created in DB');
+    })
+
+    .then(function() {
+      group.name = req.body.groupName;
+      group.userIds.push(user._id);
+      group.generateGroupCode();
+
+      // See groupSchema.js file to view this methods code.
+      group.validateGroupCode(function() {
+
+        group.save(function(err) {
+          if (err) {
+            return res.status(500).json({err: err.message});
+          } else {
+            console.log('*** Group with group code: ', group.groupCode, ' was created and added to DB');
+            var token;
+            token = user.generateJwt();
+            return res.status(201).json({'token': token, 'group': group, 'user': user});
+          }
+        });
+      });
     });
-  });
+
+
+  }
+
+
+  // JOINING GROUP ------ JOINING GROUP ------ JOINING GROUP ------ JOINING GROUP
+  else if (req.body.groupOption === "JOIN") {
+    var group;
+
+    Group.findOne({groupCode: req.body.groupCode}, function(err, _group) {
+      if (_group == null) {
+        console.log('group does not exist');
+      } else {
+        group = _group;
+      }
+
+    }).then(function() {
+      var user = new User();
+
+      user.userInfo.name = req.body.name;
+      user.userInfo.email = req.body.email;
+      user.groupId = group._id;
+      user.groupCode = req.body.groupCode;
+      user.setPassword(req.body.password);
+
+      user.save(function(err) {
+        if (err) {
+          console.log("new user couldn't be saved ", err);
+        }
+        console.log('*** New User: ', user.userInfo.name, ' was created in DB');
+      })
+
+      .then(function() {
+        group.userIds.push(user._id);
+        group.save(function(err) {
+          if (err) {
+            return res.status(500).json({err: err.message});
+          } else {
+            console.log('*** Group with group code: ', group.groupCode, ' was UPDATED in the DB');
+            var token;
+            token = user.generateJwt();
+            return res.status(201).json({'token': token, 'group': group, 'user': user});
+          }
+        });
+      });
+    });
+  }
+
+
 });
 
 
@@ -226,8 +295,8 @@ router.post('/auth/createGroup', function(req, res) {
 
   group.name = "MyGroupName";
   group.userIds.push(userId);
-  // group.generateGroupCode();
-  group.groupCode = testCode;
+  group.generateGroupCode();
+  // group.groupCode = testCode;
 
   // See groupSchema.js file to view this methods code.
   group.validateGroupCode(function() {
@@ -236,7 +305,7 @@ router.post('/auth/createGroup', function(req, res) {
       if (err) {
         return res.status(500).json({err: err.message});
       } else {
-        console.log('Group with group code: ', group.groupCode, ' was created and added to DB');
+        console.log('*** Group with group code: ', group.groupCode, ' was created and added to DB');
         return res.status(201).json({'group': group});
       }
     });

@@ -30,6 +30,7 @@ var userSchema = new mongoose.Schema({
     salt: String
   },
   wishlist: [ ItemSchema ],
+  groupId: String,
   groupCode: String
 });
 

@@ -16,25 +16,26 @@ angular.module('listPlz')
     vm.credentials = {
       name : "",
       email : "",
+      password: "",
       groupCode: "",
-      password : ""
+      groupOption: "JOIN",
+      groupName: ""
     };
 
     vm.groupOption = "";
-    vm.groupCode = "";
     vm.groupCodeExists;
 
     // check if group code exists in DB on 'blur'
     vm.checkGroupCode = function() {
-      authService.groupCodeExists(vm.groupCode, function(response) {
+      authService.groupCodeExists(vm.credentials.groupCode, function(response) {
         console.log(response);
         if (response.status == 200) {
           console.log('Group code: ' + response.data.groupCode +  ' currently exists.');
-          vm.groupCodeExists = true;
+          vm.credentials.groupCodeExists = true;
         }
         if (response.status == 202) {
           console.log('Group code: ' + response.data.groupCode +  ' does not exist.');
-          vm.groupCodeExists = false;
+          vm.credentials.groupCodeExists = false;
         }
       });
     }
@@ -48,7 +49,7 @@ angular.module('listPlz')
 
     vm.onSubmit = function() {
 
-      console.log(vm.credentials);
+      console.log('The Credentials via html form --->  ', vm.credentials);
       authService.register(vm.credentials)
         // redirect to profile page
         .then(function(){
