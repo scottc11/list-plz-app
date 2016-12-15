@@ -1,22 +1,24 @@
 
 <!-- NAVIGATION CONTROLLER -->
 
-<header ng-controller="navigationCtrl as nav" class="container">
-  <div class="row">
+<header class="header-bg">
+  <section ng-controller="navigationCtrl as nav" class="container">
+    <div class="row">
 
-    <div class="col-xs-12 col-sm-6 logo-container">
-      <h1 class="header-font">ListPlz</h1>
-    </div>
+      <div class="col-xs-12 col-sm-6 logo-container">
+        <h1 class="header-font">ListPlz</h1>
+      </div>
 
-    <div class="col-xs-12 col-sm-6 nav">
-      <ul>
-        <li><a href="/">HOME</a></li>
-        <li ng-hide="nav.isLoggedIn"><a href="/register">Sign Up</a></li>
-        <li ng-hide="nav.isLoggedIn"><a href="/login">Login</a></li>
-        <li ng-show="nav.isLoggedIn"><a href="/wishlist">My Wishlist</a></li>
-        <li ng-show="nav.isLoggedIn"><a href="/profile">{{ nav.currentUser.name }}</a></li>
-        <li ng-show="nav.isLoggedIn" ng-click="nav.logout()"><a href="/">Logout</a></li>
-      </ul>
+      <div class="col-xs-12 col-sm-6 nav">
+        <ul>
+          <li><a href="/">HOME</a></li>
+          <li ng-hide="nav.isLoggedIn"><a href="/register">Sign Up</a></li>
+          <li ng-hide="nav.isLoggedIn"><a href="/login">Login</a></li>
+          <li ng-show="nav.isLoggedIn"><a href="/wishlist">My Wishlist</a></li>
+          <li ng-show="nav.isLoggedIn"><a href="/profile">{{ nav.currentUser.name }}</a></li>
+          <li ng-show="nav.isLoggedIn" ng-click="nav.logout()"><a href="/">Logout</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </section>
 </header>

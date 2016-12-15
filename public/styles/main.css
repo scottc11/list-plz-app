@@ -1,20 +1,17 @@
 
 
 
-/*#4d7da6
-#a5d7fe
-#a5feba
-#5a8b7a
-#70b7f3*/
+
 
 /*--------------------------------------*/
 /*        GLOBAL CLASSES                */
 /*--------------------------------------*/
 
-body {background-color: rgb(233, 233, 233);}
+body {background: #FAFFFD;}
 
 .header-font {font-family: 'Roboto Mono', monospace; font-weight: 700;}
 .wishlist-font {font-family: 'Inconsolata', monospace; font-size: 2em; font-weight: 400;}
+.faded-text {color: rgb(171, 171, 171);}
 
 .text-align-center {text-align: center;}
 .margin-top-40 {margin-top: 40px;}
@@ -23,13 +20,33 @@ body {background-color: rgb(233, 233, 233);}
 .margin-top-20 {margin-top: 20px;}
 .margin-bottom-20 {margin-bottom: 20px;}
 .padding-top-bottom-40 {padding-top: 40px; padding-bottom: 40px;}
-.padding-10 {padding: 10px;};
+.padding-10 {padding: 10px;}
+
+
+.color-accent-light-red {color: #FE5F55;}
+.color-accent-light-orange {color: #9FD356;}
+.color-accent-dark-pink {color: #DD5E98;}
+.color-accent-dark-peach {color: #E16F7C;}
+.color-accent-gold-brown {color: #C1AE7C;}
+
+.bg-color-light-red {background: #FE5F55;}
+.bg-color-light-orange {background: #9FD356;}
+.bg-color-dark-pink {background: #DD5E98;}
+.bg-color-dark-peach {background: #E16F7C;}
+.bg-color-gold-brown {background: #C1AE7C;}
 
 
 /*--------------------------------------*/
 /*     HEADER and NAVBAR CLASSES        */
 /*--------------------------------------*/
 
+.header-bg {
+  background: rgb(255, 82, 82);
+}
+
+.logo-container {
+  color: white;
+}
 
 .nav ul {
   list-style: none;
@@ -38,6 +55,8 @@ body {background-color: rgb(233, 233, 233);}
   text-align: right;
 }
 
+.nav li a {color: #FFFFFF;}
+.nav li a:hover {color: #C1AE7C;}
 .nav ul li {display: inline-block; padding: 5px;}
 
 
@@ -79,8 +98,29 @@ body {background-color: rgb(233, 233, 233);}
 }
 
 /*--------------------------------------*/
+/*        PROFILE PAGE CLASSES          */
+/*--------------------------------------*/
+.profile-info {
+  box-sizing: border-box;
+  border: 1px solid blue;
+}
+
+.profile-wishlist-info {
+  box-sizing: border-box;
+  border: 1px solid red;
+}
+
+/*--------------------------------------*/
 /*        REGISTER CLASSES              */
 /*--------------------------------------*/
+
+.registration {
+
+}
+
+.reg-header {
+  text-align: center;
+}
 
 .reg-choice {
   border-radius: 10px;
