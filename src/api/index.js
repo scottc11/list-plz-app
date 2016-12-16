@@ -318,12 +318,34 @@ router.post('/auth/createGroup', function(req, res) {
 // --------------------------------------------------------------------------------
 // NOTE: GET an existing group from database
 
-router.get('/auth/group/:groupCode', function(req, res) {
-  var _groupCode = req.params.groupCode;
-  Group.find({_id: _groupCode}, function(err, data) {
-    res.json({group: data});
-  })
+router.get('/auth/group/:groupId', function(req, res) {
+  var _groupId = req.params.groupId;
+  Group.findOne({_id: _groupId}, function(err, data) {
+    if (err) {
+      return res.status(500).json({err: err.message});
+    }
+    if (data) {
+      return res.status(200).json({group: data})
+    }
+  });
 });
+
+// --------------------------------------------------------------------------------
+// NOTE: GET multiple users from the database using a group _id
+
+router.get('/group/users/:groupId', function(req, res) {
+  var _groupId = req.params.groupId;
+
+  User.find({'groupId': _groupId}, function(err, users) {
+    if (err) {
+      return res.status(500).json({err: err.message});
+    }
+    if (users.length > 0) {
+      return res.status(200).json({'users': users});
+    } else { return res.status(404) }
+  });
+
+})
 
 
 // --------------------------------------------------------------------------------

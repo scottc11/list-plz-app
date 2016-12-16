@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-     <div class="col-xs-12 col-md-6 profile-info">
+     <div id="profile-info" class="col-xs-12 col-md-6">
 
       <h1 class="form-signin-heading">Your profile</h1>
 
@@ -14,11 +14,26 @@
           <label class="col-sm-3 control-label">Email</label>
           <p class="form-control-static">{{ vm.user.userInfo.email }}</p>
         </div>
+        <div class="">
+          <label>Group Code</label>
+          <h2>{{ vm.wishlistGroup.groupCode }}</h2>
+        </div>
       </form>
 
     </div>
 
-    <div class="col-xs-12 col-md-6 profile-wishlist-info">
+    <div id="group-info" class="col-xs-12 col-md-6">
+      <div class="">
+        <h2>{{ vm.wishlistGroup.name }}</h2>
+      </div>
+
+      <div class="">
+
+        <div ng-repeat="user in vm.users" class="group-user-btn">
+          <h4>{{ user.userInfo.name }}'s wishlist</h4>
+        </div>
+
+      </div>
 
     </div>
 

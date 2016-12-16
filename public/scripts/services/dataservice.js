@@ -62,10 +62,24 @@ angular.module('listPlz')
       });
   };
 
-  //NOTE: careful with this return statement
-  // return {
-  //   getProfile : getProfile
-  // };
+  this.getWishlistGroup = function(_id) {
+    return $http.get('/api/auth/group/' + _id)
+      .then(
+        function(response){
+          return response.data;
+        },
+        function(error){console.log(error)}
+      );
+  };
 
+  this.getUsersWithGroupId = function(groupId) {
+    return $http.get('api/group/users/' + groupId)
+      .then(
+        function(response) {
+          return response.data.users;
+        },
+        function(error){console.log(error)}
+      );
+  };
 
 });

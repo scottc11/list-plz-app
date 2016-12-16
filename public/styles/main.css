@@ -40,13 +40,7 @@ body {background: #FAFFFD;}
 /*     HEADER and NAVBAR CLASSES        */
 /*--------------------------------------*/
 
-.header-bg {
-  background: rgb(255, 82, 82);
-}
-
-.logo-container {
-  color: white;
-}
+.logo-container {color: white;}
 
 .nav ul {
   list-style: none;
@@ -108,6 +102,27 @@ body {background: #FAFFFD;}
 .profile-wishlist-info {
   box-sizing: border-box;
   border: 1px solid red;
+}
+
+.group-user-btn {
+  text-align: center;
+  -webkit-border-radius: 15;
+  -moz-border-radius: 15;
+  border-radius: 15px;
+  text-shadow: 1px 1px 3px #4d4d4d;
+  font-family: Courier New;
+  color: #ffffff;
+  font-size: 20px;
+  background: #FE5F55;
+  padding: 10px 20px 10px 20px;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.group-user-btn:hover {
+  cursor: pointer;
+  background: #ff3429;
+  text-decoration: none;
 }
 
 /*--------------------------------------*/
