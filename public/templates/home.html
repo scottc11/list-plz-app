@@ -1,0 +1,13 @@
+<div id="group-info" class="col-xs-12 col-md-4">
+  <div class="">
+    <h2>{{ home.wishlistGroup.name }}</h2>
+  </div>
+
+  <div class="">
+
+    <div ng-repeat="user in vm.users" class="group-user-btn">
+      <h4>{{ user.userInfo.name }}'s wishlist</h4>
+    </div>
+
+  </div>
+</div>

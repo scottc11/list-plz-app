@@ -1,41 +1,33 @@
-<div class="container">
-  <div class="row">
 
-     <div id="profile-info" class="col-xs-12 col-md-6">
+<!-- <div id="profile-info" class="col-xs-12 col-md-4 bg-color-yellow">
+  <h1 class="form-signin-heading">Your profile</h1>
 
-      <h1 class="form-signin-heading">Your profile</h1>
-
-      <form  class="form-horizontal">
-        <div class="form-group">
-          <label class="col-sm-3 control-label">Full name</label>
-          <p class="form-control-static">{{ vm.user.userInfo.name }}</p>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label">Email</label>
-          <p class="form-control-static">{{ vm.user.userInfo.email }}</p>
-        </div>
-        <div class="">
-          <label>Group Code</label>
-          <h2>{{ vm.wishlistGroup.groupCode }}</h2>
-        </div>
-      </form>
-
+  <form  class="form-horizontal">
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Full name</label>
+      <p class="form-control-static">{{ vm.user.userInfo.name }}</p>
     </div>
-
-    <div id="group-info" class="col-xs-12 col-md-6">
-      <div class="">
-        <h2>{{ vm.wishlistGroup.name }}</h2>
-      </div>
-
-      <div class="">
-
-        <div ng-repeat="user in vm.users" class="group-user-btn">
-          <h4>{{ user.userInfo.name }}'s wishlist</h4>
-        </div>
-
-      </div>
-
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Email</label>
+      <p class="form-control-static">{{ vm.user.userInfo.email }}</p>
     </div>
+    <div class="">
+      <label>Group Code</label>
+      <h2>{{ vm.wishlistGroup.groupCode }}</h2>
+    </div>
+  </form>
 
+</div> -->
+
+
+
+<div ng-repeat="user in vm.users" class="col-xs-12 col-md-4">
+  <div class="group-user-list box-shadow-outer" ng-class="vm.bgClassArray[$index]">
+    <h2>{{ user.userInfo.name }}</h2>
+    <div>
+      <ul class="list-preview-ul">
+        <li ng-repeat="item in user.wishlist">{{item.name}}</li>
+      </ul>
+    </div>
   </div>
 </div>

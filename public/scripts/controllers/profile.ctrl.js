@@ -8,6 +8,8 @@ angular.module('listPlz')
     vm.users = [];
     vm.wishlistGroup = {};
 
+    vm.bgClassArray = ['bg-color-red', 'bg-color-pink', 'bg-color-light-blue', 'bg-color-light-peach', 'bg-color-yellow'];
+
     dataService.getProfile()
 
       .then(function(userData) {

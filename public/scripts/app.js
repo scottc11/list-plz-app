@@ -5,6 +5,11 @@ angular.module('listPlz', ['ngRoute'])
 
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
+      .when('/home', {
+        templateUrl: '../templates/home.html',
+        controller: 'homeCtrl',
+        controllerAs: 'home'
+      })
       .when('/register', {
         templateUrl: '../templates/register.html',
         controller: 'registerCtrl',
