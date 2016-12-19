@@ -17,12 +17,9 @@ angular.module('listPlz')
     var vm = this;
 
     vm.user = authService.currentUser();
-    console.log(vm.user);
-
 
     // GET THE WISH LIST DATA FROM api
     dataService.getWishlist(vm.user._id, function(response) {
-      console.log(response);
       $scope.userObject = response.data.user;
       $scope.userInfo = response.data.user.userInfo;
       $scope.wishlist = response.data.user.wishlist;
