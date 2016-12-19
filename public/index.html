@@ -7,9 +7,8 @@
   <link rel="stylesheet" href="vendor/bootstrap-3.3.7/css/bootstrap.min.css" media="screen">
 
   <!-- Load external fonts here -->
-  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700|Roboto+Mono:300,400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Advent+Pro:400,600|Aldrich|Bungee|Bungee+Hairline|Bungee+Inline|Bungee+Shade|Monofett" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,500,700" rel="stylesheet">
 
 
   <!-- Load main css here -->
@@ -26,6 +25,8 @@
 
       <div ng-view></div>
 
+      <ng-include src="'templates/footer.html'"></ng-include>
+
     </div>
   </div>
 
@@ -36,9 +37,11 @@
     <script type="text/javascript" src="vendor/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="vendor/angular.min.js"></script>
     <script type="text/javascript" src="vendor/angular-route.min.js"></script>
+    <script type="text/javascript" src="vendor/masonry/masonry.pkgd.min.js"></script>
 
-    <!-- CUSTOM SCRIPTS -->
+    <!-- ANGULAR APPLICATION SCRIPT -->
     <script type="text/javascript" src="scripts/app.js"></script>
+
 
     <!-- controllers -->
     <script type="text/javascript" src="scripts/controllers/mainctrl.js"></script>
@@ -46,6 +49,7 @@
     <script type="text/javascript" src="scripts/controllers/login.ctrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/register.ctrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/navigation.ctrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/group.wishlists.ctrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/profile.ctrl.js"></script>
 
 
@@ -55,6 +59,10 @@
 
     <!-- directives -->
     <script type="text/javascript" src="scripts/directives/customDirective.js"></script>
+
+    <!-- CUSTOM SCRIPTS -->
+    <script type="text/javascript" src="vendor/masonry/masonry.js"></script>
+
   </footer>
 
 </body>

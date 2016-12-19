@@ -3,7 +3,7 @@
 
   <section ng-controller="navigationCtrl as nav">
 
-    <div class="col-xs-12 col-sm-4 nav-container">
+    <div class="grid-item col-xs-12 col-sm-4 nav-container">
       <h1 class="header-font"><span class="color-accent-light-blue">L</span>ist<span class="color-accent-light-blue">P</span>lz</h1>
 
       <div class="nav">
@@ -11,8 +11,9 @@
           <li><a href="/">HOME</a></li>
           <li ng-hide="nav.isLoggedIn"><a href="/register">Sign Up</a></li>
           <li ng-hide="nav.isLoggedIn"><a href="/login">Login</a></li>
+          <li ng-show="nav.isLoggedIn"><a href="/group-wishlists">Wishlists</a></li>
           <li ng-show="nav.isLoggedIn"><a href="/wishlist">My Wishlist</a></li>
-          <li ng-show="nav.isLoggedIn"><a href="/profile">{{ nav.currentUser.name }}</a></li>
+          <li ng-show="nav.isLoggedIn"><a href="/profile">Profile</a></li>
           <li ng-show="nav.isLoggedIn" ng-click="nav.logout()"><a href="/">Logout</a></li>
         </ul>
       </div>

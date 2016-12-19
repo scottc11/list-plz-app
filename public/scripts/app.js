@@ -10,6 +10,11 @@ angular.module('listPlz', ['ngRoute'])
         controller: 'homeCtrl',
         controllerAs: 'home'
       })
+      .when('/group-wishlists', {
+        templateUrl: '../templates/group.wishlists.html',
+        controller: 'wishlistsCtrl',
+        controllerAs: 'vm'
+      })
       .when('/register', {
         templateUrl: '../templates/register.html',
         controller: 'registerCtrl',

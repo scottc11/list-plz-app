@@ -1,0 +1,13 @@
+<div class="masonry-container">
+  <div ng-repeat="user in vm.users" class="grid-item col-xs-12 col-md-4">
+    <div class="group-user-list box-shadow-outer" ng-class="vm.bgClassArray[$index]">
+      <h2>{{ user.userInfo.name }}</h2>
+      <hr>
+      <div>
+        <ul class="ul-list-preview">
+          <li ng-repeat="item in user.wishlist">{{item.name}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

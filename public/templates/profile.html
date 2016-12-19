@@ -1,33 +1,28 @@
 
-<!-- <div id="profile-info" class="col-xs-12 col-md-4 bg-color-yellow">
-  <h1 class="form-signin-heading">Your profile</h1>
-
-  <form  class="form-horizontal">
-    <div class="form-group">
-      <label class="col-sm-3 control-label">Full name</label>
-      <p class="form-control-static">{{ vm.user.userInfo.name }}</p>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-3 control-label">Email</label>
-      <p class="form-control-static">{{ vm.user.userInfo.email }}</p>
-    </div>
+<div class="col-xs-12 col-md-8 margin-top-20">
+  <div id="profile-info" class="bg-color-red box-shadow-outer">
     <div class="">
-      <label>Group Code</label>
-      <h2>{{ vm.wishlistGroup.groupCode }}</h2>
+      <h1 class="form-signin-heading">Your profile</h1>
+      <hr>
     </div>
-  </form>
 
-</div> -->
-
-
-
-<div ng-repeat="user in vm.users" class="col-xs-12 col-md-4">
-  <div class="group-user-list box-shadow-outer" ng-class="vm.bgClassArray[$index]">
-    <h2>{{ user.userInfo.name }}</h2>
-    <div>
-      <ul class="list-preview-ul">
-        <li ng-repeat="item in user.wishlist">{{item.name}}</li>
-      </ul>
+    <div class="">
+      <h2>Account Name</h2>
+      <h4>{{ vm.user.userInfo.name }}</h4>
     </div>
+
+    <div class="">
+      <h2>Account Email</h2>
+      <h4>{{ vm.user.userInfo.email }}</h4>
+    </div>
+
+    <div class="">
+      <h2>Group Code</h2>
+      <p>Use the code below to invite new users to your group and share their wishlist with you!</p>
+      <h4>{{ vm.user.groupCode }}</h4>
+    </div>
+
   </div>
+
+
 </div>
