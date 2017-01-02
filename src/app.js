@@ -12,7 +12,7 @@ var passport = require('passport');
 var app = express();  // assigning an instance of express()
 
 // DATABASE stuff
-require('dotenv').config();
+require('dotenv').config();  //Use a .env file to create variables specific to the current enviroment the app is running in
 require('./database');
 require('./seed');
 require('./config/passport');
@@ -36,6 +36,11 @@ app.use(function (err, req, res, next) {
 });
 
 
-app.listen(3000, function() {
-  console.log("The server is running on port 3000!");
+app.listen(process.env.PORT || 3000, function() {
+  if (process.end.PORT) {
+    console.log("The server is running on Heroku");
+  } else {
+    console.log("The server is running Locally on port 3000!");
+  }
+
 });
