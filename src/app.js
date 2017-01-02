@@ -3,6 +3,7 @@
 // EXPRESS APPLICATION FILE
 // --------------------------------------------------------------
 
+
 var express = require('express');  //requiring express module
 var parser = require('body-parser');
 var router = require('./api');  // require router from '/api/index.js'
@@ -11,6 +12,7 @@ var passport = require('passport');
 var app = express();  // assigning an instance of express()
 
 // DATABASE stuff
+require('dotenv').config();
 require('./database');
 require('./seed');
 require('./config/passport');
