@@ -5,7 +5,7 @@ angular.module('listPlz', ['ngRoute'])
 
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
-      .when('/home', {
+      .when('/', {
         templateUrl: '../templates/home.html',
         controller: 'homeCtrl',
         controllerAs: 'home'
