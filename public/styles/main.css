@@ -22,7 +22,7 @@ body {
 h1, h2 {font-family: 'Bungee Inline', cursive;}
 h3, h4, h5, h6 {font-family: 'Bungee Hairline', cursive;}
 
-.header-font {font-family: 'Bungee Shade', cursive;}
+.header-font {font-family: 'Bungee Shade', cursive; font-size: 4em; color: black;}
 .font-monofett {font-family: 'Monofett', cursive;}
 .font-bungee {font-family: 'Bungee', cursive;}
 .font-bungee-inline {font-family: 'Bungee Inline', cursive;}
@@ -82,6 +82,7 @@ h3, h4, h5, h6 {font-family: 'Bungee Hairline', cursive;}
 .margin-bottom-20 {margin-bottom: 20px;}
 .padding-top-bottom-40 {padding-top: 40px; padding-bottom: 40px;}
 .padding-10 {padding: 10px;}
+.padding-none {padding: 0;}
 
 .text-shadow {text-shadow: 0 0 15px rgba(0,0,0,0.8);}
 
@@ -105,19 +106,31 @@ h3, h4, h5, h6 {font-family: 'Bungee Hairline', cursive;}
 .bg-color-light-blue {background: #00ECFA;}
 .bg-color-dark-blue {background: #49deff;}
 .bg-color-black {background: #1E1A17;}
+.bg-color-dark-grey {background: #383737;}
 .bg-color-yellow {background: #B8FE00;}
 
+/*--------------------------------------*/
+/*        MAIN APPLICATION CLASSES      */
+/*--------------------------------------*/
+
+#app-container {border-radius: 5px; overflow: hidden;}
+
+#menu-container {height: auto;}
+
+#content-container {
+  height: 435px;
+  overflow-y: scroll;
+}
+
+#content-container::-webkit-scrollbar {display: none;}
+#yes {height: 100%;}
 
 /*--------------------------------------*/
-/*     HEADER and NAVBAR CLASSES        */
+/*        NAVIGATION CLASSES            */
 /*--------------------------------------*/
 
 .nav-container {
   color: black;
-}
-
-.nav-container h1 {
-  font-size: 4em;
 }
 
 .nav ul {
@@ -125,13 +138,34 @@ h3, h4, h5, h6 {font-family: 'Bungee Hairline', cursive;}
   font-size: 3em;
   list-style: none;
   padding: 0;
-  text-align: left;
+  text-align: center;
+  margin-bottom: 0;
 }
 
 .nav li a {color: #1E1A17;}
 .nav li a:hover {color: #00ECFA;}
-.nav ul li {display: block; padding: 5px;}
+.nav ul li {
+  display: block;
+  padding: 5px;
+}
 
+.nav-item {
+
+}
+
+.nav-item-out {line-height: 135px;}
+.nav-item-in {line-height: 87px;}
+
+/*--------------------------------------*/
+/*        HOME PAGE CLASSES             */
+/*--------------------------------------*/
+
+#home-page {
+  height: 100%;
+  text-align: center;
+}
+
+#home-page div h1 {font-size: 6em; color: white; margin: 0;}
 
 /*--------------------------------------*/
 /*        WISH LIST CLASSES             */
@@ -181,32 +215,6 @@ h3, h4, h5, h6 {font-family: 'Bungee Hairline', cursive;}
 .actions {
   display: inline-block;
   float: right;
-}
-
-/*--------------------------------------*/
-/*        HOME PAGE CLASSES             */
-/*--------------------------------------*/
-
-#home-page {
-
-}
-
-.home-page-header {
-  color: black;
-  font-size: 7em;
-}
-
-.reg-box, .login-box {
-  text-align: center;
-  color: black;
-  height: 300px;
-  margin: 20px;
-  padding: 10px;
-}
-
-.reg-box div h3, .login-box div h3 {
-  font-size: 3em;
-  margin-top: 0;
 }
 
 
@@ -263,7 +271,6 @@ h3, h4, h5, h6 {font-family: 'Bungee Hairline', cursive;}
 
 .registration {
   padding: 15px;
-  margin-bottom: 40px;
 }
 /*.registration form div label {color: #00ECFA;}*/
 

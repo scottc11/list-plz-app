@@ -3,18 +3,20 @@
 
   <section ng-controller="navigationCtrl as nav">
 
-    <div class="grid-item col-xs-12 col-md-4 nav-container">
-      <h1 class="header-font"><span class="color-accent-light-blue">L</span>ist<span class="color-accent-light-blue">P</span>lz</h1>
+    <div class="grid-item nav-container">
 
       <div class="nav">
         <ul class="header-font">
-          <li><a href="/">HOME</a></li>
-          <li ng-hide="nav.isLoggedIn"><a href="/register">Sign Up</a></li>
-          <li ng-hide="nav.isLoggedIn"><a href="/login">Login</a></li>
-          <li ng-show="nav.isLoggedIn"><a href="/group-wishlists">Wishlists</a></li>
-          <li ng-show="nav.isLoggedIn"><a href="/wishlist">My Wishlist</a></li>
-          <li ng-show="nav.isLoggedIn"><a href="/profile">Profile</a></li>
-          <li ng-show="nav.isLoggedIn" ng-click="nav.logout()"><a href="/">Logout</a></li>
+
+          <li ng-hide="nav.isLoggedIn" class="nav-item nav-item-out"><a href="/">HOME</a></li>
+          <li ng-hide="nav.isLoggedIn" class="nav-item nav-item-out"><a href="/register">Sign Up</a></li>
+          <li ng-hide="nav.isLoggedIn" class="nav-item nav-item-out"><a href="/login">Login</a></li>
+
+          <li ng-show="nav.isLoggedIn" class="nav-item nav-item-in"><a href="/">HOME</a></li>
+          <li ng-show="nav.isLoggedIn" class="nav-item nav-item-in"><a href="/group-wishlists">Wishlists</a></li>
+          <li ng-show="nav.isLoggedIn" class="nav-item nav-item-in"><a href="/wishlist">My Wishlist</a></li>
+          <li ng-show="nav.isLoggedIn" class="nav-item nav-item-in"><a href="/profile">Profile</a></li>
+          <li ng-show="nav.isLoggedIn" class="nav-item nav-item-in" ng-click="nav.logout()"><a href="/">Logout</a></li>
         </ul>
       </div>
     </div>

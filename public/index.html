@@ -17,14 +17,31 @@
 
 </head>
 
-<body ng-app="listPlz" class="bg-body">
+<body ng-app="listPlz" class="bg-color-red">
 
   <div class="container">
     <div class="row">
 
-      <div ng-view></div>
+      <div class="col-xs-12 margin-top-40">
+        <div>
+          <h1 class="header-font"><span class="color-accent-light-blue">L</span>ist<span class="color-accent-light-blue">P</span>lz</h1>
+        </div>
+      </div>
 
-      <ng-include src="'templates/footer.html'"></ng-include>
+      <main id="app-container" class="col-xs-12 box-shadow-outer-heavy padding-none margin-top-40">
+
+
+        <nav class="col-xs-12 col-sm-4 margin-none padding-none bg-color-dark-blue">
+          <ng-include src="'templates/navigation.html'"></ng-include>
+        </nav>
+
+
+        <section id="content-container" class="col-xs-12 col-sm-8 margin-none padding-none">
+          <div id="yes" ng-view></div>
+        </section>
+      </main>
+
+      <!-- <ng-include src="'templates/footer.html'"></ng-include> -->
 
     </div>
   </div>
