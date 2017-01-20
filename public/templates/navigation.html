@@ -3,20 +3,22 @@
 
   <section ng-controller="navigationCtrl as nav" ng-class="{'selected': nav.selected}">
 
-    <div class="grid-item nav-container">
+    <div class="grid-item">
 
       <div class="nav">
-        <ul class="header-font">
+        <ul class="nav-container bg-color-baby-blue header-font">
 
-          <li ng-hide="nav.isLoggedIn" class="bg-color-baby-blue nav-item nav-item-out selected"><a href="/">HOME</a></li>
-          <li ng-hide="nav.isLoggedIn" class="bg-color-baby-blue nav-item nav-item-out rounded"><a href="/register">Sign Up</a></li>
-          <li ng-hide="nav.isLoggedIn" class="bg-color-baby-blue nav-item nav-item-out"><a href="/login">Login</a></li>
+          <li ng-repeat="navItem in nav.navItems" ng-click="nav.setSelected(navItem)" ng-class="{'selected': navItem == nav.selectedNavItem, 'bg-color-baby-blue': navItem == nav.selectedNavItem  }" ng-hide="nav.isLoggedIn" class="nav-item nav-item-out">
+            <a href="{{navItem.href}}">{{navItem.label}}</a>
+          </li>
+          <!-- <li ng-hide="nav.isLoggedIn" class="bg-color-baby-blue nav-item nav-item-out rounded"><a href="/register">Sign Up</a></li>
+          <li ng-hide="nav.isLoggedIn" class="bg-color-baby-blue nav-item nav-item-out"><a href="/login">Login</a></li> -->
 
-          <li ng-show="nav.isLoggedIn" class="nav-item nav-item-in"><a href="/">HOME</a></li>
+          <!-- <li ng-show="nav.isLoggedIn" class="nav-item nav-item-in"><a href="/">HOME</a></li>
           <li ng-show="nav.isLoggedIn" class="nav-item nav-item-in"><a href="/group-wishlists">Wishlists</a></li>
           <li ng-show="nav.isLoggedIn" class="nav-item nav-item-in"><a href="/wishlist">My Wishlist</a></li>
           <li ng-show="nav.isLoggedIn" class="nav-item nav-item-in"><a href="/profile">Profile</a></li>
-          <li ng-show="nav.isLoggedIn" class="nav-item nav-item-in" ng-click="nav.logout()"><a href="/">Logout</a></li>
+          <li ng-show="nav.isLoggedIn" class="nav-item nav-item-in" ng-click="nav.logout()"><a href="/">Logout</a></li> -->
         </ul>
       </div>
     </div>

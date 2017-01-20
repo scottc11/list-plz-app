@@ -114,8 +114,12 @@ h3, h4, h5, h6 {font-family: 'Bungee Hairline', cursive;}
   overflow-y: scroll;
 }
 
-#content-container::-webkit-scrollbar {display: none;}
+#content-container::-webkit-scrollbar {}
 #yes {height: 100%;}
+
+.view-container {
+  height: 100%;
+}
 
 /*--------------------------------------*/
 /*        NAVIGATION CLASSES            */
@@ -123,6 +127,12 @@ h3, h4, h5, h6 {font-family: 'Bungee Hairline', cursive;}
 
 .nav-container {
   color: black;
+}
+
+.nav-container {
+  -webkit-box-shadow: inset 1px -1px 47px 1px rgba(0,0,0,0.3);
+  -moz-box-shadow: inset 1px -1px 47px 1px rgba(0,0,0,0.3);
+  box-shadow: inset 1px -1px 47px 1px rgba(0,0,0,0.3);
 }
 
 .nav ul {
@@ -141,11 +151,20 @@ h3, h4, h5, h6 {font-family: 'Bungee Hairline', cursive;}
   padding: 5px;
 }
 
-.selected {background: none;}
-.selected a {color: white;}
+.selected {
+  position: relative;
+  z-index: 2;
+  -webkit-box-shadow: 0px 5px 50px -5px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 5px 50px -5px rgba(0,0,0,0.2);
+  box-shadow: 0px 5px 50px -5px rgba(0,0,0,0.2), 0px -5px 50px -5px rgba(0,0,0,0.2);
+}
+
+.not-selected {
+  /*box-shadow: inset 0px 11px 50px -10px rgba(0,0,0,0.3);*/
+}
+
 .rounded {border-top-right-radius: 20px;}
 .nav-item {
-
 }
 
 .nav-item-out {line-height: 135px;}
@@ -254,11 +273,11 @@ h3, h4, h5, h6 {font-family: 'Bungee Hairline', cursive;}
 
 .custom-input {
   height: 50px;
-  color: white;
+  color: black;
   font-family: 'Bungee Hairline', cursive;
   font-weight: 700;
   font-size: 2em;
-  background: #585858;
+  background: white;
   border: none;
   -moz-box-shadow:    inset -1px 0px 5px 0px rgba(0,0,0, 0.4);
   -webkit-box-shadow: inset -0.5px 0.5px 5px 0px rgba(0,0,0, 0.4);
@@ -270,17 +289,17 @@ h3, h4, h5, h6 {font-family: 'Bungee Hairline', cursive;}
 .registration {
   padding: 30px;
 }
-/*.registration form div label {color: #00ECFA;}*/
+
 
 .reg-header {text-align: center;}
-.reg-header h1 {font-size: 2em;}
+.reg-header h1 {font-size: 3em;}
 
 .login-container {
   margin-bottom: 40px;
   padding: 15px;
 }
 .login-container form div label {color: #00ECFA;}
-.login-header h1 {font-size: 2em;}
+.login-header h1 {font-size: 3em;}
 
 .reg-choice {
   border-radius: 10px;
@@ -288,13 +307,16 @@ h3, h4, h5, h6 {font-family: 'Bungee Hairline', cursive;}
 }
 
 .btn {
-  color: white;
+  color: black;
   width: 75%;
   border: none;
   font-family: 'Bungee Hairline', cursive;
-  font-size: 1em;
+  font-size: 2em;
+  background: #49deff;
 }
-
+.btn:hover {
+  background: #9dedff;
+}
 /*--------------------------------------*/
 /*        PROFILE CLASSES               */
 /*--------------------------------------*/
