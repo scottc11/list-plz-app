@@ -2,22 +2,37 @@
 
 angular.module('listPlz')
   .controller('navigationCtrl', function($rootScope, $location, authService) {
-    var vm = this;
+    var nav = this;
 
 
     $rootScope.updateNav = function() {
-      vm.isLoggedIn = authService.isLoggedIn();
-      vm.currentUser = authService.currentUser();
+      nav.isLoggedIn = authService.isLoggedIn();
+      nav.currentUser = authService.currentUser();
     }
 
-    vm.logout = function() {
+    nav.logout = function() {
       authService.logout();
-      vm.isLoggedIn = authService.isLoggedIn();
+      nav.isLoggedIn = authService.isLoggedIn();
     }
 
+    nav.setSelected = function(navItem) {
+      nav.selectedNavItem = navItem;
+    }
 
-    vm.isLoggedIn = authService.isLoggedIn();
-    vm.currentUser = authService.currentUser();
+    nav.navItems = [
+      {label: "home"},
+      {label: "Sign Up"},
+      {label: "Login"},
+
+      {label: "Home"},
+      {label: "Wishlists"},
+      {label: "My Wishlist"},
+      {label: "Profile"},
+      {label: "Logout"}
+    ]
+
+    nav.isLoggedIn = authService.isLoggedIn();
+    nav.currentUser = authService.currentUser();
 
   }
 );
