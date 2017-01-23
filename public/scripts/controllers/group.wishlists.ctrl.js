@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('listPlz')
-  .controller('wishlistsCtrl', function($location, dataService) {
+  .controller('wishlistsCtrl', function($location, $rootScope, dataService) {
+
     var vm = this;
+
+    $rootScope.appBackground = "bg-color-dark-grey"
 
     vm.user = {};
     vm.users = [];
     vm.wishlistGroup = {};
-
-    vm.bgClassArray = ['bg-color-red', 'bg-color-pink', 'bg-color-light-blue', 'bg-color-light-peach', 'bg-color-yellow'];
 
     dataService.getProfile()
 

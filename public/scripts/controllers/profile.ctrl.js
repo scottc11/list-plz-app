@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('listPlz')
-  .controller('profileCtrl', function($location, dataService) {
+  .controller('profileCtrl', function($location, $rootScope, dataService) {
     var vm = this;
+
+    $rootScope.appBackground = "bg-color-dark-grey";
 
     vm.user = {};
 

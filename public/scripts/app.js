@@ -54,6 +54,12 @@ angular.module('listPlz', ['ngRoute'])
 
   // if an unauthenticated user tries to visit the profile page they will be redirected to the homepage.
   .run(['$rootScope', '$location', 'authService', function($rootScope, $location, authService){
+
+
+    $rootScope.appBackground = "";
+
+
+    // make a route accessible only to logged in users, by protecting the /profile path.
     $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
       if ($location.path() === '/profile' && !authService.isLoggedIn) {
         $location.path('/');

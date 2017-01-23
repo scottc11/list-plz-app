@@ -12,6 +12,8 @@
 
 
   <!-- Load main css here -->
+  <link rel="stylesheet" href="styles/global.css" media="screen">
+  <link rel="stylesheet" href="styles/colors.css" media="screen">
   <link rel="stylesheet" href="styles/main.css" media="screen">
   <link rel="stylesheet" href="styles/responsive.css" media="screen">
 
@@ -19,7 +21,7 @@
 
 <body ng-app="listPlz" class="bg-color-sunset-orange">
 
-  <div class="container">
+  <div ng-controller="mainCtrl as app" class="container">
     <div class="row">
 
       <div class="col-xs-12 margin-top-40">
@@ -28,7 +30,7 @@
         </div>
       </div>
 
-      <main id="app-container" class="col-xs-12 box-shadow-outer-heavy padding-none margin-top-40 bg-color-dark-grey">
+      <main id="app-container" ng-class="$root.appBackground" class="col-xs-12 box-shadow-outer-heavy padding-none margin-top-40">
 
 
         <nav class="col-xs-12 col-sm-4 margin-none padding-none">
@@ -61,7 +63,7 @@
 
 
     <!-- controllers -->
-    <script type="text/javascript" src="scripts/controllers/mainctrl.js"></script>
+    <script type="text/javascript" src="scripts/controllers/main.ctrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/wishlist.ctrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/login.ctrl.js"></script>
     <script type="text/javascript" src="scripts/controllers/register.ctrl.js"></script>
