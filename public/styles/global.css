@@ -7,10 +7,17 @@ body {
   font-weight: 400;
 }
 
+.scrollable-content::-webkit-scrollbar {
+    background:transparent;
+}
+.scrollable-content::-webkit-scrollbar-thumb {
+    background:#999 !important;
+}
+
 h1, h2 {font-family: 'Bungee Inline', cursive;}
 h3, h4, h5, h6 {font-family: 'Bungee Hairline', cursive;}
 
-.header-font {font-family: 'Bungee Shade', cursive; font-size: 4em; color: black;}
+.header-font {font-family: 'Bungee Shade', cursive; font-size: 4em;}
 .font-monofett {font-family: 'Monofett', cursive;}
 .font-bungee {font-family: 'Bungee', cursive;}
 .font-bungee-inline {font-family: 'Bungee Inline', cursive;}

@@ -1,17 +1,14 @@
 /*--------------------------------------*/
 /*        COLOR CLASSES                 */
 /*--------------------------------------*/
-.hr-sunset-orange {
-  border-color: #FE5F55;;
-  border-width: 1px;
-  margin: 0;
-}
 
-.color-accent-red {color: #FE5F55;}
-.color-accent-pink {color: #6F6178;}
-.color-accent-light-peach {color: #42E8B8;}
+
+
+.color-accent-sunset-orange {color: #FE5F55;}
+.color-accent-giants-orange {color: #F86624;}
+.color-accent-desire {color: #EA3546;}
 .color-accent-light-blue {color: #49deff;}
-.color-accent-black {color: #1E1A17;}
+.color-accent-black {color: #000000;}
 .color-accent-yellow {color: #F9C80E;}
 .color-accent-white {color: #FFFFFF;}
 
@@ -20,4 +17,24 @@
 .bg-color-desire {background: #EA3546;}
 .bg-color-baby-blue {background: #49deff;}
 .bg-color-dark-grey {background: #383737;}
+.bg-color-light-grey {background: #4e4e4e;}
 .bg-color-yellow {background: #F9C80E;}
+
+
+.hr-sunset-orange {
+  border-color: #FE5F55;
+  border-width: 1px;
+  margin: 0;
+}
+.hr-baby-blue {
+  border-color: #49deff;
+  border-width: 1px;
+  margin: 0;
+}
+
+.hr-white {
+  border-color: #ffffff;
+  border-width: 1px;
+  margin: 0;
+  margin-bottom: 20px;
+}
