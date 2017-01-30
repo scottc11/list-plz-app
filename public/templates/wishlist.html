@@ -10,16 +10,13 @@
       </div>
       <hr class="hr-baby-blue">
 
-
     </div>
+
 
     <div class="wishlist scrollable-content font-bungee-hairline">
 
-
-
       <!-- iterate through the wish list and create html elements for each -->
       <div class="wishlist-item" ng-repeat="item in wishlist | orderBy: 'purchased' " ng-init="item.purchased = false" ng-class="{'edited': item.edited, 'completed': item.purchased}">
-        <!-- <input ng-model="item.purchased" type="checkbox"> -->
         <div class="item-point color-accent-yellow"><span class="glyphicon glyphicon-stop"></span></div>
         <label ng-hide="editing" class="wishlist-item-label editing-label">{{item.name}}</label>
 
@@ -28,7 +25,6 @@
 
         <div class="actions">
           <a href="" ng-click="editing = !editing"><span class="glyphicon glyphicon-edit"></span></a> <!-- toggles editing value between true/false-->
-          <!-- <a href="" ng-click="saveItem()"><span class="glyphicon glyphicon-floppy-disk"></span></a> -->
           <a href="" ng-click="deleteItem(item, $index)"><span class="glyphicon glyphicon-trash"></span></a>
 
           <a href="{{item.url}}" target="_blank" ng-if="item.url">url</a>

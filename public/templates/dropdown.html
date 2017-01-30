@@ -1,0 +1,12 @@
+
+<div class="dropdown-container">
+	<div class="selected-user-display">
+		<h1 class="header-font">{{vm.selectedUser.userInfo.name}}</h3>
+	</div>
+	<span ng-click="vm.show()" ng-class="{'glyphicon-chevron-up': vm.listVisible == true, 'glyphicon-chevron-down': vm.listVisible == false}" class="vertical-centre color-accent-yellow expander glyphicon"></span>
+	<div class="dropdown-display bg-color-light-grey" ng-show="vm.listVisible" ng-class="{ clicked: vm.listVisible }">
+		<div ng-repeat="user in vm.users" class="dropdown-item" ng-click="vm.select(user)">
+			<h3>{{user.userInfo.name}}</h3>
+		</div>
+	</div>
+</div>

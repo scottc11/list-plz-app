@@ -1,26 +1,21 @@
-<section class="col-xs-12 col-sm-10 col-sm-offset-1">
-  <div class="row">
+<section class="group-wishlists-container">
 
-    <div class="">
-      <h1 class="group-lists-heading">WISHLISTS</h1>
-      <h4 class="group-lists-heading">Select User</h4>
+    <div class="group-header">
+      <ng-include src="'templates/dropdown.html'"></ng-include>
+      <hr class="hr-baby-blue">
     </div>
 
-    <div ng-repeat="user in vm.users" class="">
-      <div class="group-user-list">
-        <h2>{{ user.userInfo.name }}</h2>
-        <hr>
-
-        <div>
-          <ul class="ul-list-preview">
-            <li class="color-accent-black" ng-repeat="item in user.wishlist">- {{item.name}}</li>
-          </ul>
-        </div>
-
-        <hr>
-
+    <div class="wishlist scrollable-content font-bungee-hairline">
+      <div class="wishlist-item" ng-repeat="item in vm.selectedUser.wishlist">
+        <input ng-model="item.purchased" type="checkbox">
+        <label ng-class="{'purchased': item.purchased}" class="wishlist-item-label">{{item.name}}</label>
+        <hr class="wishlist-hr hr-sunset-orange">
       </div>
     </div>
-  </div>
+
+    <div class="wishlist-footer">
+      <div id="save-button" class="font-bungee-inline" ng-click="vm.savePurchasedItems()">Submit Purchase(s)</div>
+    </div>
+
 </section>
 <script type="text/javascript" src="vendor/masonry/masonry.js"></script>

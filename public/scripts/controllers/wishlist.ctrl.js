@@ -1,16 +1,4 @@
 'use strict';
-/*
-- GET the current logged in users _id
-    - via authService.currentUser() User.findOne(userEmail)
-- GET current users wishlist
-    - reconfigure get route in express to take a user id as a parameter
-- turn ON editing if current user is viewing his/her list, and turn OFF checkboxes
-- turn OFF editing when current user is viewing another list, and turn ON checkboxes
-- arrows left and right which switch between each wishlist in the group
-
-dataService
-authService
-*/
 
 angular.module('listPlz')
   .controller('wishlistCtrl', function($scope, $location, dataService, authService) {

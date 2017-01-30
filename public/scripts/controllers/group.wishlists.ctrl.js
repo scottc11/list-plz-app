@@ -7,12 +7,34 @@ angular.module('listPlz')
 
     $rootScope.appBackground = "bg-color-dark-grey"
 
-    vm.user = {};
+    vm.user = {}; // the actual logged in user
     vm.users = [];
+    vm.selectedUser = {}; // the displayed wishlists corrosponding user object
     vm.wishlistGroup = {};
+    vm.listVisible = false;
+
+    vm.show = function() {
+      vm.listVisible = !vm.listVisible;
+    }
+
+    vm.select = function(user) {
+      vm.selectedUser = user;
+      vm.listVisible = false;
+    }
+
+    vm.savePurchasedItems = function() {
+      var userObjectId = vm.selectedUser._id;
+
+      // Get all items that have been edited and put them in array
+      var itemsToSave = vm.selectedUser.wishlist.filter(function(item) {
+        if (item.purchased) {
+          return item;
+        }
+      });
+      dataService.saveItem(userObjectId, itemsToSave);
+    }
 
     dataService.getProfile()
-
       .then(function(userData) {
         vm.user = userData;
       }, function (error) {console.log(error);})
@@ -30,7 +52,9 @@ angular.module('listPlz')
         .then(
           function(response) {
             vm.users = response;
+            vm.selectedUser = vm.users[0];
             console.log(vm.users);
+            console.log(vm.selectedUser);
           }
         )
       });

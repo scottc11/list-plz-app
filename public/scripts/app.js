@@ -59,6 +59,13 @@ angular.module('listPlz', ['ngRoute'])
     $rootScope.appBackground = "";
 
 
+    // NOTE: WHEN USER clciks anywhere on a page, trigger this, giving you the option to close any dropdown menus etc.
+
+    angular.element(document).on("click", function(e) {
+		    $rootScope.$broadcast("documentClicked", angular.element(e.target));
+	  });
+
+
     // make a route accessible only to logged in users, by protecting the /profile path.
     $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
       if ($location.path() === '/profile' && !authService.isLoggedIn) {
