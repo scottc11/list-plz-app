@@ -201,10 +201,22 @@ router.post('/auth/register', function(req, res) {
             return res.status(500).json({err: err.message});
           } else {
             console.log('*** Group with group code: ', group.groupCode, ' was created and added to DB');
+            user.groupCode = group.groupCode;
             var token;
             token = user.generateJwt();
             return res.status(201).json({'token': token, 'group': group, 'user': user});
           }
+        })
+
+        // Have to 're-save' the user object to save the 'groupCode' to DB
+        .then(function() {
+          user.save(function(err) {
+            if (err) {
+              console.log("'groupCode' was NOT saved to the user object ", err);
+            }
+            console.log("'groupCode' was added to User object in DB");
+          });
+
         });
       });
     });
